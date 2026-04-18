@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hubungan Siklik Sistem Plastik</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --border: #1e2d45;
+    --accent: #00d4aa;
+    --accent2: #ff6b35;
+    --accent3: #7c3aed;
+    --text: #e2e8f0;
+    --muted: #64748b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0,212,170,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 80% 80%, rgba(124,58,237,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255,107,53,0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  header .label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  header h1 span {
+    color: var(--accent);
+  }
+
+  header p {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* CYCLE DIAGRAM */
+  .cycle-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto 64px;
+  }
+
+  svg.cycle-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* PROPOSITIONS TABLE */
+  .propositions {
+    margin-top: 48px;
+  }
+
+  .propositions h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .propositions .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  .prop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  .prop-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .prop-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .prop-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--card-color, var(--accent));
+  }
+
+  .prop-card .from-to {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .node-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.07);
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .arrow-icon {
+    color: var(--card-color, var(--accent));
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .prop-card .proposition {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .prop-card .proposition strong {
+    color: var(--card-color, var(--accent));
+  }
+
+  /* Footer note */
+  .footer-note {
+    margin-top: 56px;
+    padding: 24px 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent3);
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .footer-note strong {
+    color: var(--text);
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .prop-card {
+    animation: fadeInUp 0.4s ease both;
+  }
+
+  .prop-card:nth-child(1) { animation-delay: 0.05s; }
+  .prop-card:nth-child(2) { animation-delay: 0.10s; }
+  .prop-card:nth-child(3) { animation-delay: 0.15s; }
+  .prop-card:nth-child(4) { animation-delay: 0.20s; }
+  .prop-card:nth-child(5) { animation-delay: 0.25s; }
+  .prop-card:nth-child(6) { animation-delay: 0.30s; }
+  .prop-card:nth-child(7) { animation-delay: 0.35s; }
+  .prop-card:nth-child(8) { animation-delay: 0.40s; }
+  .prop-card:nth-child(9) { animation-delay: 0.45s; }
+  .prop-card:nth-child(10) { animation-delay: 0.50s; }
+  .prop-card:nth-child(11) { animation-delay: 0.55s; }
+  .prop-card:nth-child(12) { animation-delay: 0.60s; }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="label">Sistem Berpikir &nbsp;·&nbsp; Hubungan Siklik</div>
+    <h1>Siklus Sistem <span>Plastik</span></h1>
+    <p>Proposisi antar komponen yang membentuk lingkaran sebab-akibat — dari produksi hingga keberlanjutan, dan kembali lagi.</p>
+  </header>
+
+  <!-- SVG CYCLE DIAGRAM -->
+  <div class="cycle-wrapper">
+    <svg class="cycle-svg" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Arrow markers -->
+        <marker id="arr-teal" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#00d4aa"/>
+        </marker>
+        <marker id="arr-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#ff6b35"/>
+        </marker>
+        <marker id="arr-purple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#a78bfa"/>
+        </marker>
+        <marker id="arr-yellow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#fbbf24"/>
+        </marker>
+        <marker id="arr-rose" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#fb7185"/>
+        </marker>
+        <marker id="arr-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#4ade80"/>
+        </marker>
+        <!-- Glow filters -->
+        <filter id="glow-teal">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="glow-center">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- Background circle guide (faint) -->
+      <circle cx="450" cy="450" r="310" stroke="#1e2d45" stroke-width="1" stroke-dasharray="4 6"/>
+
+      <!-- Center node: Keberlanjutan -->
+      <circle cx="450" cy="450" r="62" fill="#0f1f35" stroke="#00d4aa" stroke-width="2" filter="url(#glow-teal)"/>
+      <text x="450" y="444" text-anchor="middle" font-family="Playfair Display,serif" font-size="13" fill="#00d4aa" font-weight="700">♻</text>
+      <text x="450" y="461" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#00d4aa" font-weight="600">Keberlanjutan</text>
+      <text x="450" y="476" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="#64748b">(Tujuan Akhir)</text>
+
+      <!-- Node positions (11 outer nodes on circle r=310) -->
+      <!-- 0: Produksi   angle=-90  → top -->
+      <!-- 1: Konsumsi   angle=-57 -->
+      <!-- 2: Siklus Hidup angle=-24 -->
+      <!-- 3: Limbah     angle=9 -->
+      <!-- 4: Lingkungan angle=42 -->
+      <!-- 5: Sosial     angle=75 -->
+      <!-- 6: Ekonomi    angle=108  → bottom-right area -->
+      <!-- 7: Teknologi  angle=141 -->
+      <!-- 8: Iklim      angle=174 -->
+      <!-- 9: Kebijakan  angle=207 → left area -->
+      <!-- Computed: cx = 450 + 310*cos(angle), cy = 450 + 310*sin(angle) -->
+
+      <!-- ===== OUTER NODES ===== -->
+
+      <!-- Produksi: angle -90° → (450, 140) -->
+      <g transform="translate(450,140)">
+        <rect x="-46" y="-22" width="92" height="44" rx="22" fill="#0f1f35" stroke="#00d4aa" stroke-width="1.5"/>
+        <text y="-5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#00d4aa">🧪</text>
+        <text y="11" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#e2e8f0" font-weight="500">Produksi</text>
+      </g>
+
+      <!-- Konsumsi: angle -57.3° (= -90+32.7) → cos(-57.3)=0.540 sin(-57.3)=-0.841 → (617, 189) -->
+      <g transform="translate(617,189)">
+        <rect x="-44" y="-22" width="88" height="44" rx="22" fill="#0f1f35" stroke="#ff6b35" stroke-width="1.5"/>
+        <text y="-5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#ff6b35">🛍</text>
+        <text y="11" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#e2e8f0" font-weight="500">Konsumsi</text>
+      </g>
+
+      <!-- Siklus Hidup: angle -24.5° → cos=-24.5=0.909 sin=-24.5=-0.415 → (732,321) -->
+      <g transform="translate(732,321)">
+        <rect x="-52" y="-22" width="104" height="44" rx="22" fill="#0f1f35" stroke="#fbbf24" stroke-width="1.5"/>
+        <text y="-5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#fbbf24">🔄</text>
+        <text y="11" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#e2e8f0" font-weight="500">Siklus Hidup</text>
+      </g>
+
+      <!-- Limbah: angle 8.7° → cos=0.988 sin=0.151 → (756,497) -->
+      <g transform="translate(756,497)">
+        <rect x="-40" y="-22" width="80" height="44" rx="22" fill="#0f1f35" stroke="#fb7185" stroke-width="1.5"/>
+        <text y="-5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#fb7185">🗑</text>
+        <text y="11" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#e2e8f0" font-weight="500">Limbah</text>
+      </g>
+
+      <!-- Lingkungan: angle 42° → cos=0.743 sin=0.669 → (680,658) -->
+      <g transform="translate(680,658)">
+        <rect x="-52" y="-22" width="104" height="44" rx="22" fill="#0f1f35" stroke="#4ade80" stroke-width="1.5"/>
+        <text y="-5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#4ade80">🌿</text>
+        <text y="11" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#e2e8f0" font-weight="500">Lingkungan</text>
+      </g>
+
+      <!-- Sosial: angle 75.3° → cos=0.254 sin=0.967 → (529,750) -->
+      <g transform="translate(529,750)">
+        <rect x="-36" y="-22" width="72" height="44" rx="22" fill="#0f1f35" stroke="#a78bfa" stroke-width="1.5"/>
+        <text y="-5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#a78bfa">👥</text>
+        <text y="11" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#e2e8f0" font-weight="500">Sosial</text>
+      </g>
+
+      <!-- Ekonomi: angle 108.7° → cos=-0.322 sin=0.947 → (350,744) -->
+      <g transform="translate(350,744)">
+        <rect x="-42" y="-22" width="84" height="44" rx="22" fill="#0f1f35" stroke="#fbbf24" stroke-width="1.5"/>
+        <text y="-5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#fbbf24">💰</text>
+        <text y="11" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#e2e8f0" font-weight="500">Ekonomi</text>
+      </g>
+
+      <!-- Teknologi: angle 141.3° → cos=-0.782 sin=0.623 → (207,643) -->
+      <g transform="translate(207,643)">
+        <rect x="-48" y="-22" width="96" height="44" rx="22" fill="#0f1f35" stroke="#38bdf8" stroke-width="1.5"/>
+        <text y="-5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#38bdf8">🔬</text>
+        <text y="11" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#e2e8f0" font-weight="500">Teknologi</text>
+      </g>
+
+      <!-- Iklim: angle 174° → cos=-0.994 sin=0.105 → (142,483) -->
+      <g transform="translate(142,483)">
+        <rect x="-36" y="-22" width="72" height="44" rx="22" fill="#0f1f35" stroke="#60a5fa" stroke-width="1.5"/>
+        <text y="-5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#60a5fa">🌍</text>
+        <text y="11" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#e2e8f0" font-weight="500">Iklim</text>
+      </g>
+
+      <!-- Kebijakan: angle 207° → cos=-0.891 sin=-0.454 → (174,309) -->
+      <g transform="translate(174,309)">
+        <rect x="-48" y="-22" width="96" height="44" rx="22" fill="#0f1f35" stroke="#c084fc" stroke-width="1.5"/>
+        <text y="-5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#c084fc">🏛</text>
+        <text y="11" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#e2e8f0" font-weight="500">Kebijakan</text>
+      </g>
+
+      <!-- ===== ARROWS (main cycle ring, clockwise) ===== -->
+
+      <!-- 1. Produksi → Konsumsi -->
+      <path d="M496,152 Q570,145 572,185" stroke="#00d4aa" stroke-width="1.8" marker-end="url(#arr-teal)" fill="none" opacity="0.8"/>
+
+      <!-- 2. Konsumsi → Siklus Hidup -->
+      <path d="M658,203 Q712,240 706,315" stroke="#ff6b35" stroke-width="1.8" marker-end="url(#arr-orange)" fill="none" opacity="0.8"/>
+
+      <!-- 3. Siklus Hidup → Limbah -->
+      <path d="M754,367 Q762,420 758,476" stroke="#fbbf24" stroke-width="1.8" marker-end="url(#arr-yellow)" fill="none" opacity="0.8"/>
+
+      <!-- 4. Limbah → Lingkungan -->
+      <path d="M726,524 Q718,578 698,638" stroke="#fb7185" stroke-width="1.8" marker-end="url(#arr-rose)" fill="none" opacity="0.8"/>
+
+      <!-- 5. Lingkungan → Sosial -->
+      <path d="M636,672 Q590,704 568,736" stroke="#4ade80" stroke-width="1.8" marker-end="url(#arr-green)" fill="none" opacity="0.8"/>
+
+      <!-- 6. Sosial → Ekonomi -->
+      <path d="M490,754 Q430,760 396,748" stroke="#a78bfa" stroke-width="1.8" marker-end="url(#arr-purple)" fill="none" opacity="0.8"/>
+
+      <!-- 7. Ekonomi → Teknologi -->
+      <path d="M310,730 Q256,704 232,649" stroke="#fbbf24" stroke-width="1.8" marker-end="url(#arr-yellow)" fill="none" opacity="0.8"/>
+
+      <!-- 8. Teknologi → Iklim -->
+      <path d="M172,622 Q152,568 148,506" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arr-teal)" fill="none" opacity="0.8"/>
+
+      <!-- 9. Iklim → Kebijakan -->
+      <path d="M142,460 Q146,390 170,334" stroke="#60a5fa" stroke-width="1.8" marker-end="url(#arr-teal)" fill="none" opacity="0.8"/>
+
+      <!-- 10. Kebijakan → Produksi -->
+      <path d="M200,288 Q290,210 402,152" stroke="#c084fc" stroke-width="1.8" marker-end="url(#arr-purple)" fill="none" opacity="0.8"/>
+
+      <!-- ===== ARROWS TO CENTER (keberlanjutan) ===== -->
+      <!-- Kebijakan → Keberlanjutan -->
+      <path d="M222,309 Q330,360 392,430" stroke="#c084fc" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arr-purple)" fill="none" opacity="0.5"/>
+      <!-- Teknologi → Keberlanjutan -->
+      <path d="M255,627 Q340,560 392,490" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arr-teal)" fill="none" opacity="0.5"/>
+      <!-- Sosial → Keberlanjutan -->
+      <path d="M493,730 Q476,612 462,514" stroke="#a78bfa" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arr-purple)" fill="none" opacity="0.5"/>
+      <!-- Ekonomi → Keberlanjutan -->
+      <path d="M350,722 Q392,628 436,514" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arr-yellow)" fill="none" opacity="0.4"/>
+
+      <!-- Keberlanjutan → Produksi (feedback loop back) -->
+      <path d="M434,388 Q430,280 452,163" stroke="#00d4aa" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#arr-teal)" fill="none" opacity="0.6"/>
+
+      <!-- Legend -->
+      <rect x="20" y="20" width="210" height="76" rx="10" fill="#0f1f35" stroke="#1e2d45" stroke-width="1"/>
+      <text x="35" y="42" font-family="DM Sans,sans-serif" font-size="10" fill="#64748b" font-weight="600" letter-spacing="1">KETERANGAN</text>
+      <line x1="35" y1="56" x2="70" y2="56" stroke="#00d4aa" stroke-width="1.8"/>
+      <polygon points="68,52 68,60 74,56" fill="#00d4aa"/>
+      <text x="80" y="60" font-family="DM Sans,sans-serif" font-size="10" fill="#94a3b8">Siklus utama</text>
+      <line x1="35" y1="76" x2="70" y2="76" stroke="#a78bfa" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <polygon points="68,72 68,80 74,76" fill="#a78bfa"/>
+      <text x="80" y="80" font-family="DM Sans,sans-serif" font-size="10" fill="#94a3b8">Menuju keberlanjutan</text>
+    </svg>
+  </div>
+
+  <!-- PROPOSITIONS TABLE -->
+  <div class="propositions">
+    <h2>Proposisi Hubungan Antar Komponen</h2>
+    <p class="subtitle">Setiap proposisi menjelaskan mekanisme sebab-akibat dalam sistem plastik.</p>
+
+    <div class="prop-grid">
+
+      <div class="prop-card" style="--card-color:#00d4aa">
+        <div class="from-to">
+          <span class="node-badge">🧪 Produksi</span>
+          <span class="arrow-icon">→</span>
+          <span class="node-badge">🛍 Konsumsi</span>
+        </div>
+        <p class="proposition">Semakin banyak plastik diproduksi, semakin besar <strong>ketersediaan produk plastik</strong> di pasar, sehingga mendorong konsumsi masyarakat meningkat.</p>
+      </div>
+
+      <div class="prop-card" style="--card-color:#ff6b35">
+        <div class="from-to">
+          <span class="node-badge">🛍 Konsumsi</span>
+          <span class="arrow-icon">→</span>
+          <span class="node-badge">🔄 Siklus Hidup</span>
+        </div>
+        <p class="proposition">Tingginya konsumsi plastik memperpanjang dan memperluas <strong>jalur siklus hidup</strong> plastik — dari penggunaan, pembuangan, hingga transformasi menjadi limbah.</p>
+      </div>
+
+      <div class="prop-card" style="--card-color:#fbbf24">
+        <div class="from-to">
+          <span class="node-badge">🔄 Siklus Hidup</span>
+          <span class="arrow-icon">→</span>
+          <span class="node-badge">🗑 Limbah</span>
+        </div>
+        <p class="proposition">Karena plastik sulit terurai, siklus hidupnya berakhir sebagai <strong>limbah jangka panjang</strong> yang menumpuk di darat maupun perairan.</p>
+      </div>
+
+      <div class="prop-card" style="--card-color:#fb7185">
+        <div class="from-to">
+          <span class="node-badge">🗑 Limbah</span>
+          <span class="arrow-icon">→</span>
+          <span class="node-badge">🌿 Lingkungan</span>
+        </div>
+        <p class="proposition">Limbah plastik yang tidak terkelola <strong>mencemari tanah, air, dan laut</strong>, merusak ekosistem dan mengancam keanekaragaman hayati.</p>
+      </div>
+
+      <div class="prop-card" style="--card-color:#4ade80">
+        <div class="from-to">
+          <span class="node-badge">🌿 Lingkungan</span>
+          <span class="arrow-icon">→</span>
+          <span class="node-badge">👥 Sosial</span>
+        </div>
+        <p class="proposition">Kerusakan lingkungan akibat plastik berdampak langsung pada <strong>kesehatan, kenyamanan, dan kualitas hidup</strong> masyarakat di sekitar sumber pencemaran.</p>
+      </div>
+
+      <div class="prop-card" style="--card-color:#a78bfa">
+        <div class="from-to">
+          <span class="node-badge">👥 Sosial</span>
+          <span class="arrow-icon">→</span>
+          <span class="node-badge">💰 Ekonomi</span>
+        </div>
+        <p class="proposition">Kondisi sosial yang terdampak pencemaran mendorong <strong>kebutuhan ekonomi baru</strong> — biaya kesehatan meningkat, namun juga membuka peluang industri daur ulang.</p>
+      </div>
+
+      <div class="prop-card" style="--card-color:#fbbf24">
+        <div class="from-to">
+          <span class="node-badge">💰 Ekonomi</span>
+          <span class="arrow-icon">→</span>
+          <span class="node-badge">🔬 Teknologi</span>
+        </div>
+        <p class="proposition">Tekanan ekonomi dan peluang pasar mendorong <strong>investasi pada teknologi baru</strong> seperti plastik biodegradable dan sistem daur ulang yang lebih efisien.</p>
+      </div>
+
+      <div class="prop-card" style="--card-color:#38bdf8">
+        <div class="from-to">
+          <span class="node-badge">🔬 Teknologi</span>
+          <span class="arrow-icon">→</span>
+          <span class="node-badge">🌍 Iklim</span>
+        </div>
+        <p class="proposition">Perkembangan teknologi produksi dan pengelolaan limbah dapat <strong>menurunkan emisi gas rumah kaca</strong> dari industri plastik, membantu mitigasi perubahan iklim.</p>
+      </div>
+
+      <div class="prop-card" style="--card-color:#60a5fa">
+        <div class="from-to">
+          <span class="node-badge">🌍 Iklim</span>
+          <span class="arrow-icon">→</span>
+          <span class="node-badge">🏛 Kebijakan</span>
+        </div>
+        <p class="proposition">Bukti perubahan iklim yang semakin nyata menjadi <strong>tekanan politik</strong> bagi pemerintah untuk mengeluarkan regulasi yang lebih ketat terhadap industri plastik.</p>
+      </div>
+
+      <div class="prop-card" style="--card-color:#c084fc">
+        <div class="from-to">
+          <span class="node-badge">🏛 Kebijakan</span>
+          <span class="arrow-icon">→</span>
+          <span class="node-badge">🧪 Produksi</span>
+        </div>
+        <p class="proposition">Regulasi pemerintah — seperti larangan plastik sekali pakai dan pajak karbon — <strong>mengubah standar dan skala produksi</strong>, menutup lingkaran sistem secara siklik.</p>
+      </div>
+
+      <div class="prop-card" style="--card-color:#00d4aa">
+        <div class="from-to">
+          <span class="node-badge">🏛 Kebijakan</span>
+          <span class="arrow-icon">→</span>
+          <span class="node-badge">♻ Keberlanjutan</span>
+        </div>
+        <p class="proposition">Kebijakan yang terarah mendorong seluruh komponen sistem bergerak menuju <strong>keseimbangan jangka panjang</strong> antara lingkungan, sosial, dan ekonomi.</p>
+      </div>
+
+      <div class="prop-card" style="--card-color:#a78bfa">
+        <div class="from-to">
+          <span class="node-badge">♻ Keberlanjutan</span>
+          <span class="arrow-icon">→</span>
+          <span class="node-badge">🧪 Produksi</span>
+        </div>
+        <p class="proposition">Penerapan prinsip keberlanjutan dalam industri <strong>mengubah cara produksi</strong> — lebih efisien, lebih bersih, dan menggunakan bahan alternatif — memperbarui titik awal siklus.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <strong>Catatan Sistemik:</strong> Hubungan di atas membentuk <em>causal loop</em> tertutup — setiap komponen mempengaruhi komponen berikutnya, dan pada akhirnya kembali mempengaruhi titik awalnya. Keberlanjutan bukan komponen yang berdiri sendiri, melainkan <em>kondisi yang harus dicapai</em> melalui intervensi pada setiap titik dalam sistem ini. Lingkaran yang tidak dikelola akan memperkuat masalah (<em>reinforcing loop</em>); kebijakan dan teknologi berfungsi sebagai <em>balancing loop</em> untuk mengarahkan sistem menuju keseimbangan.
+  </div>
+
+</div>
+</body>
+</html>
