@@ -4,20 +4,14 @@ import { useUser } from '../context/UserContext';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from '../components/ui/button';
 import { motion } from 'motion/react';
-import { DndProvider, useDrag, useDrop  } from 'react-dnd';
-import { MultiBackend, TouchTransition, HTML5DragTransition } from 'react-dnd-multi-backend';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { TouchBackend } from 'react-dnd-touch-backend';
 import { ArrowRight, Star, X, Check } from 'lucide-react';
 import { Footer } from '../components/Footer';
-
 
 interface Item {
   id: string;
   label: string;
   isCorrect: boolean;
 }
-
 
 const ITEMS: Item[] = [
   { id: '1', label: 'Produksi', isCorrect: true },
@@ -41,110 +35,36 @@ const ITEMS: Item[] = [
   { id: '19', label: 'Krisis Pangan', isCorrect: false }
 ];
 
-const HTML5toTouch = {
-  backends: [
-    {
-      id: 'html5',
-      backend: HTML5Backend,
-      transition: HTML5DragTransition,
-    },
-    {
-      id: 'touch',
-      backend: TouchBackend,
-      options: { enableMouseEvents: true },
-      transition: TouchTransition,
-    },
-  ],
-};
-
-const DraggableItem: React.FC<{ item: Item; onDrop: (item: Item) => void }> = ({ item, onDrop }) => {
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: 'item',
-    item: item,
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging()
-    })
-  }));
-
-
-  return (
-    <motion.div
-  ref={(node: HTMLDivElement | null) => {
-    if (node) drag(node);
-  }}
-      className={`px-4 py-3 bg-white border-2 border-gray-300 rounded-lg cursor-move hover:border-[#2D6A4F] transition-all ${
-        isDragging ? 'opacity-50' : 'opacity-100'
-      }`}
-      whileHover={{ scale: 1.05 }}
-    >
-      <span className="font-medium">{item.label}</span>
-    </motion.div>
-  );
-};
-
-
-const DropZone: React.FC<{ onDrop: (item: Item) => void; t: (key: string) => string }> = ({ onDrop, t }) => {
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: 'item',
-    drop: onDrop,
-    collect: (monitor) => ({
-      isOver: monitor.isOver()
-    })
-  }));
-
-
-  return (
-  <div
-  ref={(node) => {
-    if (node) drop(node);
-  }}
-  className={`min-h-96 border-4 border-dashed rounded-2xl p-8 transition-all ${
-    isOver ? 'border-[#2D6A4F] bg-[#2D6A4F]/10' : 'border-gray-300 bg-gray-50'
-  }`}
->
-  <div className="text-center mb-6">
-    <div className="inline-block p-8 bg-gradient-to-br from-[#2D6A4F] to-[#40916C] rounded-full mb-4">
-      <h3 className="text-3xl font-bold text-white">
-        {t('dragdrop.plastic')}
-      </h3>
-    </div>
-    <p className="text-gray-600">{t('dragdrop.dragHere')}</p>
-  </div>
-</div>
-  );
-};
-
-
 export const DragDropActivity: React.FC = () => {
   const navigate = useNavigate();
   const { updateProgress, completeActivity, addPoints } = useUser();
   const { t } = useLanguage();
+
   const [availableItems, setAvailableItems] = useState<Item[]>(
     [...ITEMS].sort(() => Math.random() - 0.5)
   );
+  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
   const [droppedItems, setDroppedItems] = useState<Item[]>([]);
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState<{ message: string; isCorrect: boolean } | null>(null);
-  const [dropCounter, setDropCounter] = useState(0); // Add unique counter for dropped items
 
+  // klik item
+  const handleSelect = (item: Item) => {
+    if (droppedItems.some(i => i.id === item.id)) return;
+    setSelectedItem(item);
+  };
 
-  const handleDrop = (item: Item) => {
-    // Check if item already dropped - prevent duplicates
-    if (droppedItems.some(dropped => dropped.id === item.id)) {
-      return;
-    }
+  // klik drop zone
+  const handleDrop = () => {
+    if (!selectedItem) return;
 
+    setAvailableItems(prev =>
+      prev.filter(i => i.id !== selectedItem.id)
+    );
 
-    // Remove from available items
-    setAvailableItems(prev => prev.filter(i => i.id !== item.id));
-   
-    // Add to dropped items (without duplicate keys)
-    setDroppedItems(prev => [...prev, item]);
-    setDropCounter(prev => prev + 1);
+    setDroppedItems(prev => [...prev, selectedItem]);
 
-
-    // Update score and show feedback
-    if (item.isCorrect) {
+    if (selectedItem.isCorrect) {
       setScore(prev => prev + 1);
       addPoints(1);
       setFeedback({ message: 'Benar! +1 poin', isCorrect: true });
@@ -153,11 +73,13 @@ export const DragDropActivity: React.FC = () => {
       setFeedback({ message: 'Salah! -1 poin', isCorrect: false });
     }
 
+    setSelectedItem(null);
 
-    // Clear feedback after 2 seconds
     setTimeout(() => setFeedback(null), 2000);
   };
 
+  const correctCount = droppedItems.filter(i => i.isCorrect).length;
+  const totalCorrect = ITEMS.filter(i => i.isCorrect).length;
 
   const handleContinue = () => {
     completeActivity('drag-drop');
@@ -165,187 +87,152 @@ export const DragDropActivity: React.FC = () => {
     navigate('/connection-activity');
   };
 
-
-  const correctCount = droppedItems.filter(i => i.isCorrect).length;
-  const incorrectCount = droppedItems.filter(i => !i.isCorrect).length;
-  const totalCorrect = ITEMS.filter(i => i.isCorrect).length;
-
-
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div className="min-h-screen bg-gray-50">
-        <nav className="bg-[#2D6A4F] text-white px-6 py-4">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <h1 className="text-2xl font-bold">SYNERGY - Identifikasi Komponen Sistem</h1>
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <Star className="w-5 h-5 text-[#F4A261]" />
-                <span className="font-semibold">Skor: {score}</span>
-              </div>
-              <Button variant="ghost" className="text-white" onClick={() => navigate('/dashboard')}>
-                ← Dasbor
-              </Button>
-            </div>
+     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-green-50">
+      
+      {/* NAV */}
+      <nav className="bg-[#2D6A4F] text-white px-6 py-4">
+        <div className="max-w-7xl mx-auto flex justify-between">
+          <h1 className="text-xl font-bold">
+            SYNERGY - Identifikasi Komponen Sistem
+          </h1>
+
+          <div className="flex items-center gap-4">
+            <Star className="w-5 h-5 text-yellow-300" />
+            <span>Skor: {score}</span>
           </div>
-        </nav>
-
-
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-bold mb-4">Identifikasi Komponen Sistem</h2>
-              <p className="text-xl text-gray-600">
-                Seret komponen yang benar ke dalam lingkaran Sistem Plastik. Hindari pengecoh!
-              </p>
-            </div>
-
-
-            {/* Progress */}
-            <div className="mb-8 bg-white rounded-lg p-6 shadow">
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-semibold">Progres: {correctCount}/{totalCorrect} komponen benar</span>
-                <span className="text-sm text-gray-600">
-                  {incorrectCount > 0 && `${incorrectCount} salah`}
-                </span>
-              </div>
-              <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
-                <motion.div
-                  className="h-full bg-gradient-to-r from-[#2D6A4F] to-[#40916C]"
-                  initial={{ width: 0 }}
-                  animate={{ width: `${(correctCount / totalCorrect) * 100}%` }}
-                  transition={{ duration: 0.3 }}
-                />
-              </div>
-            </div>
-
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Available Items */}
-              <div>
-                <h3 className="text-xl font-bold mb-4">Komponen Tersedia</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {availableItems.map(item => (
-                    <DraggableItem key={item.id} item={item} onDrop={handleDrop} />
-                  ))}
-                </div>
-              </div>
-
-
-              {/* Drop Zone */}
-              <div>
-                <h3 className="text-xl font-bold mb-4">Sistem Plastik</h3>
-                <DropZone onDrop={handleDrop} t={t} />
-               
-                {/* Dropped Items */}
-                {droppedItems.length > 0 && (
-                  <div className="mt-4 space-y-2">
-                    <h4 className="font-semibold">Item yang Dipilih:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {droppedItems.map((item, index) => (
-                        <div
-                          key={`dropped-${item.id}-${index}`}
-                          className={`px-3 py-2 rounded flex items-center gap-2 ${
-                            item.isCorrect
-                              ? 'bg-green-100 border border-green-300'
-                              : 'bg-red-100 border border-red-300'
-                          }`}
-                        >
-                          <span className="text-sm">{item.label}</span>
-                          {item.isCorrect ? (
-                            <Check className="w-4 h-4 text-green-600" />
-                          ) : (
-                            <X className="w-4 h-4 text-red-600" />
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-
-            {/* Feedback */}
-            {feedback && (
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                className={`fixed top-24 right-6 px-6 py-4 rounded-lg shadow-lg ${
-                  feedback.isCorrect
-                    ? 'bg-green-500 text-white'
-                    : 'bg-red-500 text-white'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  {feedback.isCorrect ? (
-                    <Check className="w-6 h-6" />
-                  ) : (
-                    <X className="w-6 h-6" />
-                  )}
-                  <span className="font-semibold">{feedback.message}</span>
-                </div>
-              </motion.div>
-            )}
-
-
-            {/* Continue Button */}
-            {correctCount === totalCorrect && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-8 text-center"
-              >
-                <div className="bg-green-50 border-2 border-green-300 rounded-lg p-8 mb-6">
-                  <h3 className="text-2xl font-bold text-green-700 mb-2">
-                    🎉 Kerja Bagus!
-                  </h3>
-                  <p className="text-green-600">
-                    Anda telah mengidentifikasi semua komponen sistem dengan benar. Anda berpikir seperti seorang analis sistem!
-                  </p>
-                </div>
-                <Button
-                  size="lg"
-                  className="bg-[#2D6A4F] hover:bg-[#40916C]"
-                  onClick={handleContinue}
-                >
-                  Lanjutkan
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </motion.div>
-            )}
-
-
-            {/* Always show Next button at bottom */}
-            {droppedItems.length > 0 && correctCount < totalCorrect && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-8 text-center"
-              >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-[#2D6A4F] text-[#2D6A4F] hover:bg-[#2D6A4F] hover:text-white"
-                  onClick={handleContinue}
-                >
-                  Lanjutkan
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-                <p className="text-sm text-gray-600 mt-2">
-                  Anda dapat melanjutkan, tetapi cobalah untuk mendapatkan semua komponen yang benar terlebih dahulu!
-                </p>
-              </motion.div>
-            )}
-          </motion.div>
         </div>
-        <Footer />
+      </nav>
+
+      {/* CONTENT */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
+
+        {/* TITLE */}
+         <div className="text-center mb-6">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#2D6A4F]">
+          Identifikasi Komponen Sistem
+        </h2>
+        <p className="text-gray-600 mt-2">
+          Klik komponen → lalu klik area sistem
+        </p>
       </div>
-    </DndProvider>
-  );
+      
+       {/* SELECT STATUS */}
+      {selectedItem && (
+        <div className="mb-4 text-center">
+          <span className="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-full shadow">
+            🎯 Terpilih: <b>{selectedItem.label}</b>
+          </span>
+        </div>
+      )}
+
+        {/* DROP ZONE */}
+         <motion.div
+        onClick={handleDrop}
+        whileTap={{ scale: 0.98 }}
+        className={`min-h-72 md:min-h-80 rounded-3xl border-4 border-dashed p-8 text-center cursor-pointer transition-all shadow-lg ${
+          selectedItem
+            ? 'border-[#2D6A4F] bg-green-100 scale-[1.01]'
+            : 'border-gray-300 bg-white'
+        }`}
+      >
+        <div className="flex flex-col items-center justify-center h-full">
+          <div className="text-5xl mb-3">🧩</div>
+          <h3 className="text-2xl font-bold text-[#2D6A4F]">
+            Sistem Plastik
+          </h3>
+          <p className="text-gray-500 mt-2">
+            {selectedItem
+              ? 'Klik untuk memasukkan item ini'
+              : 'Pilih komponen terlebih dahulu'}
+          </p>
+        </div>
+      </motion.div>
+
+        {/* ITEMS */}
+         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-8">
+        {availableItems.map(item => (
+          <motion.button
+            key={item.id}
+            onClick={() => handleSelect(item)}
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            className={`
+              p-4 rounded-2xl border-2 text-sm md:text-base font-medium shadow-sm transition-all
+              ${
+                selectedItem?.id === item.id
+                  ? 'bg-[#2D6A4F] text-white border-[#2D6A4F] shadow-lg'
+                  : 'bg-white border-gray-200 hover:border-[#2D6A4F] hover:shadow-md'
+              }
+            `}
+          >
+            {item.label}
+          </motion.button>
+        ))}
+      </div>
+
+        {/* DROPPED ITEMS */}
+         {droppedItems.length > 0 && (
+        <div className="mt-10">
+          <h4 className="font-bold text-[#2D6A4F] mb-3">
+            📦 Item yang sudah dipilih:
+          </h4>
+
+          <div className="flex flex-wrap gap-2">
+            {droppedItems.map(i => (
+              <motion.div
+                key={i.id}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className={`
+                  px-3 py-2 rounded-full flex items-center gap-2 shadow
+                  ${i.isCorrect ? 'bg-green-100' : 'bg-red-100'}
+                `}
+              >
+                <span className="text-sm">{i.label}</span>
+                {i.isCorrect ? (
+                  <Check className="w-4 h-4 text-green-600" />
+                ) : (
+                  <X className="w-4 h-4 text-red-600" />
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      )}
+
+        {/* FEEDBACK */}
+        {feedback && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`fixed top-24 right-4 px-5 py-3 rounded-xl text-white shadow-lg ${
+            feedback.isCorrect ? 'bg-green-500' : 'bg-red-500'
+          }`}
+        >
+          {feedback.message}
+        </motion.div>
+      )}
+
+        {/* NEXT BUTTON*/}
+        {correctCount === totalCorrect && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center mt-10"
+        >
+          <Button
+            onClick={handleContinue}
+            className="bg-[#2D6A4F] hover:bg-[#1f4d39] text-white px-6 py-3 rounded-xl text-lg shadow-lg"
+          >
+            🎉 Lanjutkan <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
+        </motion.div>
+      )}
+
+    </div>
+
+    <Footer />
+  </div>
+);
 };
-
-
