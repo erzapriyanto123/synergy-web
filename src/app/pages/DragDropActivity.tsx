@@ -20,7 +20,7 @@ const ITEMS: Item[] = [
   { id: '4', label: 'Lingkungan', isCorrect: true },
   { id: '5', label: 'Ekonomi', isCorrect: true },
   { id: '6', label: 'Teknologi', isCorrect: true },
-  { id: '7', label: 'Iklim', isCorrect: true },
+  { id: '7', label: 'Iklim', isCorrect: false },
   { id: '8', label: 'Sosial', isCorrect: true },
   { id: '9', label: 'Keberlanjutan', isCorrect: true },
   { id: '10', label: 'Fotosintesis', isCorrect: false },
@@ -114,6 +114,9 @@ export const DragDropActivity: React.FC = () => {
         </h2>
         <p className="text-gray-600 mt-2">
           Klik komponen → lalu klik area sistem
+        </p>
+        <p className="text-sm text-gray-600 mt-2">
+          Minimal 5 jawaban benar untuk lanjut
         </p>
       </div>
       
@@ -215,7 +218,7 @@ export const DragDropActivity: React.FC = () => {
       )}
 
         {/* NEXT BUTTON*/}
-        {correctCount === totalCorrect && (
+        {correctCount >= 5 && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
