@@ -4,16 +4,20 @@ import { useUser } from '../context/UserContext';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from '../components/ui/button';
 import { motion } from 'motion/react';
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { DndProvider, useDrag, useDrop  } from 'react-dnd';
+import { MultiBackend, TouchTransition, HTML5DragTransition } from 'react-dnd-multi-backend';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
 import { ArrowRight, Star, X, Check } from 'lucide-react';
 import { Footer } from '../components/Footer';
+
 
 interface Item {
   id: string;
   label: string;
   isCorrect: boolean;
 }
+
 
 const ITEMS: Item[] = [
   { id: '1', label: 'Produksi', isCorrect: true },
@@ -37,6 +41,22 @@ const ITEMS: Item[] = [
   { id: '19', label: 'Krisis Pangan', isCorrect: false }
 ];
 
+const HTML5toTouch = {
+  backends: [
+    {
+      id: 'html5',
+      backend: HTML5Backend,
+      transition: HTML5DragTransition,
+    },
+    {
+      id: 'touch',
+      backend: TouchBackend,
+      options: { enableMouseEvents: true },
+      transition: TouchTransition,
+    },
+  ],
+};
+
 const DraggableItem: React.FC<{ item: Item; onDrop: (item: Item) => void }> = ({ item, onDrop }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'item',
@@ -45,6 +65,7 @@ const DraggableItem: React.FC<{ item: Item; onDrop: (item: Item) => void }> = ({
       isDragging: monitor.isDragging()
     })
   }));
+
 
   return (
     <motion.div
@@ -61,6 +82,7 @@ const DraggableItem: React.FC<{ item: Item; onDrop: (item: Item) => void }> = ({
   );
 };
 
+
 const DropZone: React.FC<{ onDrop: (item: Item) => void; t: (key: string) => string }> = ({ onDrop, t }) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'item',
@@ -69,6 +91,7 @@ const DropZone: React.FC<{ onDrop: (item: Item) => void; t: (key: string) => str
       isOver: monitor.isOver()
     })
   }));
+
 
   return (
   <div
@@ -91,6 +114,7 @@ const DropZone: React.FC<{ onDrop: (item: Item) => void; t: (key: string) => str
   );
 };
 
+
 export const DragDropActivity: React.FC = () => {
   const navigate = useNavigate();
   const { updateProgress, completeActivity, addPoints } = useUser();
@@ -103,18 +127,21 @@ export const DragDropActivity: React.FC = () => {
   const [feedback, setFeedback] = useState<{ message: string; isCorrect: boolean } | null>(null);
   const [dropCounter, setDropCounter] = useState(0); // Add unique counter for dropped items
 
+
   const handleDrop = (item: Item) => {
     // Check if item already dropped - prevent duplicates
     if (droppedItems.some(dropped => dropped.id === item.id)) {
       return;
     }
 
+
     // Remove from available items
     setAvailableItems(prev => prev.filter(i => i.id !== item.id));
-    
+   
     // Add to dropped items (without duplicate keys)
     setDroppedItems(prev => [...prev, item]);
     setDropCounter(prev => prev + 1);
+
 
     // Update score and show feedback
     if (item.isCorrect) {
@@ -126,9 +153,11 @@ export const DragDropActivity: React.FC = () => {
       setFeedback({ message: 'Salah! -1 poin', isCorrect: false });
     }
 
+
     // Clear feedback after 2 seconds
     setTimeout(() => setFeedback(null), 2000);
   };
+
 
   const handleContinue = () => {
     completeActivity('drag-drop');
@@ -136,9 +165,11 @@ export const DragDropActivity: React.FC = () => {
     navigate('/connection-activity');
   };
 
+
   const correctCount = droppedItems.filter(i => i.isCorrect).length;
   const incorrectCount = droppedItems.filter(i => !i.isCorrect).length;
   const totalCorrect = ITEMS.filter(i => i.isCorrect).length;
+
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -158,6 +189,7 @@ export const DragDropActivity: React.FC = () => {
           </div>
         </nav>
 
+
         <div className="max-w-7xl mx-auto px-6 py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -169,6 +201,7 @@ export const DragDropActivity: React.FC = () => {
                 Seret komponen yang benar ke dalam lingkaran Sistem Plastik. Hindari pengecoh!
               </p>
             </div>
+
 
             {/* Progress */}
             <div className="mb-8 bg-white rounded-lg p-6 shadow">
@@ -188,6 +221,7 @@ export const DragDropActivity: React.FC = () => {
               </div>
             </div>
 
+
             <div className="grid md:grid-cols-2 gap-8">
               {/* Available Items */}
               <div>
@@ -199,11 +233,12 @@ export const DragDropActivity: React.FC = () => {
                 </div>
               </div>
 
+
               {/* Drop Zone */}
               <div>
                 <h3 className="text-xl font-bold mb-4">Sistem Plastik</h3>
                 <DropZone onDrop={handleDrop} t={t} />
-                
+               
                 {/* Dropped Items */}
                 {droppedItems.length > 0 && (
                   <div className="mt-4 space-y-2">
@@ -213,8 +248,8 @@ export const DragDropActivity: React.FC = () => {
                         <div
                           key={`dropped-${item.id}-${index}`}
                           className={`px-3 py-2 rounded flex items-center gap-2 ${
-                            item.isCorrect 
-                              ? 'bg-green-100 border border-green-300' 
+                            item.isCorrect
+                              ? 'bg-green-100 border border-green-300'
                               : 'bg-red-100 border border-red-300'
                           }`}
                         >
@@ -232,6 +267,7 @@ export const DragDropActivity: React.FC = () => {
               </div>
             </div>
 
+
             {/* Feedback */}
             {feedback && (
               <motion.div
@@ -239,8 +275,8 @@ export const DragDropActivity: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 className={`fixed top-24 right-6 px-6 py-4 rounded-lg shadow-lg ${
-                  feedback.isCorrect 
-                    ? 'bg-green-500 text-white' 
+                  feedback.isCorrect
+                    ? 'bg-green-500 text-white'
                     : 'bg-red-500 text-white'
                 }`}
               >
@@ -254,6 +290,7 @@ export const DragDropActivity: React.FC = () => {
                 </div>
               </motion.div>
             )}
+
 
             {/* Continue Button */}
             {correctCount === totalCorrect && (
@@ -270,8 +307,8 @@ export const DragDropActivity: React.FC = () => {
                     Anda telah mengidentifikasi semua komponen sistem dengan benar. Anda berpikir seperti seorang analis sistem!
                   </p>
                 </div>
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-[#2D6A4F] hover:bg-[#40916C]"
                   onClick={handleContinue}
                 >
@@ -281,6 +318,7 @@ export const DragDropActivity: React.FC = () => {
               </motion.div>
             )}
 
+
             {/* Always show Next button at bottom */}
             {droppedItems.length > 0 && correctCount < totalCorrect && (
               <motion.div
@@ -288,8 +326,8 @@ export const DragDropActivity: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-8 text-center"
               >
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   variant="outline"
                   className="border-[#2D6A4F] text-[#2D6A4F] hover:bg-[#2D6A4F] hover:text-white"
                   onClick={handleContinue}
@@ -309,3 +347,5 @@ export const DragDropActivity: React.FC = () => {
     </DndProvider>
   );
 };
+
+
