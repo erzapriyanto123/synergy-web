@@ -125,7 +125,7 @@ export const GreenChemistryLab: React.FC = () => {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
           <h1 className="text-lg sm:text-2xl font-bold text-center sm:text-left">SYNERGY - Solusi Kimia Hijau</h1>
           <Button variant="ghost" className="text-white text-sm sm:text-base" onClick={() => navigate('/dashboard')}>
-            ← Dasbor
+            ← Dashboard
           </Button>
         </div>
       </nav>
@@ -165,7 +165,7 @@ export const GreenChemistryLab: React.FC = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                Green chemistry adalah pendekatan dalam ilmu kimia yang berfokus pada perancangan produk dan proses yang lebih aman, efisien, serta meminimalkan dampak negatif terhadap lingkungan.
+                Green chemistry adalah konsep dalam ilmu kimia yang berfokus pada perancangan produk dan proses yang lebih aman, efisien, serta meminimalkan dampak negatif terhadap lingkungan.
               </motion.p>
 
               <motion.div
@@ -198,7 +198,17 @@ export const GreenChemistryLab: React.FC = () => {
               </motion.div>
 
               <motion.p
-                className="text-base sm:text-lg text-white text-center italic bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 inline-block w-full"
+                 className="
+    text-sm sm:text-lg 
+    text-white text-center italic 
+    bg-white/10 backdrop-blur-sm 
+    rounded-2xl sm:rounded-full
+    px-4 sm:px-8 
+    py-3 sm:py-4 
+    max-w-[90%] sm:max-w-full 
+    mx-auto 
+    leading-relaxed
+  "
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
@@ -349,48 +359,61 @@ export const GreenChemistryLab: React.FC = () => {
               <p className="text-base sm:text-lg text-gray-600">melalui Green Chemistry</p>
             </div>
             
+            <div className="text-center mb-4">
+  <span className={`
+    inline-block px-4 py-1 rounded-full text-sm font-semibold transition-all duration-300
+    ${systemStage === 'past' && 'bg-red-100 text-red-600'}
+    ${systemStage === 'present' && 'bg-orange-100 text-orange-600'}
+    ${systemStage === 'future' && 'bg-green-100 text-green-600'}
+  `}>
+    {systemStage === 'past' && '1950 - 2000'}
+    {systemStage === 'present' && '2000 - 2026'}
+    {systemStage === 'future' && '2026+'}
+  </span>
+</div>
+
+
             {/* Stage Selector */}
-            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  variant={systemStage === 'past' ? 'default' : 'outline'}
-                  onClick={() => setSystemStage('past')}
-                  className={`text-sm sm:text-base px-6 py-6 rounded-xl font-semibold transition-all duration-300 ${
-                    systemStage === 'past'
-                      ? 'bg-gradient-to-r from-red-600 to-red-700 shadow-lg shadow-red-500/50'
-                      : 'hover:bg-red-50'
-                  }`}
-                >
-                  Masa Lalu (1950-2000)
-                </Button>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  variant={systemStage === 'present' ? 'default' : 'outline'}
-                  onClick={() => setSystemStage('present')}
-                  className={`text-sm sm:text-base px-6 py-6 rounded-xl font-semibold transition-all duration-300 ${
-                    systemStage === 'present'
-                      ? 'bg-gradient-to-r from-orange-600 to-orange-700 shadow-lg shadow-orange-500/50'
-                      : 'hover:bg-orange-50'
-                  }`}
-                >
-                  Sekarang (2000-2026)
-                </Button>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  variant={systemStage === 'future' ? 'default' : 'outline'}
-                  onClick={() => setSystemStage('future')}
-                  className={`text-sm sm:text-base px-6 py-6 rounded-xl font-semibold transition-all duration-300 ${
-                    systemStage === 'future'
-                      ? 'bg-gradient-to-r from-green-600 to-green-700 shadow-lg shadow-green-500/50'
-                      : 'hover:bg-green-50'
-                  }`}
-                >
-                  Masa Depan (2026+)
-                </Button>
-              </motion.div>
-            </div>
+            <div className="flex justify-center mb-10 px-4">
+  <div className="relative w-full max-w-xl">
+
+    {/* Background */}
+    <div className="bg-gray-100 rounded-2xl p-1 flex shadow-inner">
+
+      {[
+        { key: 'past', label: 'Masa Lalu', color: 'red' },
+        { key: 'present', label: 'Sekarang', color: 'orange' },
+        { key: 'future', label: 'Masa Depan', color: 'green' }
+      ].map((item) => (
+        <button
+          key={item.key}
+          onClick={() => setSystemStage(item.key as any)}
+          className={`flex-1 py-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 relative z-10
+          ${
+            systemStage === item.key
+              ? `text-white`
+              : 'text-gray-600 hover:text-gray-900'
+          }`}
+        >
+          {item.label}
+        </button>
+      ))}
+
+      {/* ACTIVE SLIDER */}
+      <div
+        className={`absolute top-1 bottom-1 w-1/3 rounded-xl transition-all duration-300 shadow-lg
+        ${
+          systemStage === 'past'
+            ? 'left-1 bg-gradient-to-r from-red-500 to-red-600'
+            : systemStage === 'present'
+            ? 'left-1/3 bg-gradient-to-r from-orange-500 to-orange-600'
+            : 'left-2/3 bg-gradient-to-r from-green-500 to-green-600'
+        }`}
+      />
+    </div>
+
+  </div>
+</div>
 
             {/* Timeline Content */}
             <motion.div

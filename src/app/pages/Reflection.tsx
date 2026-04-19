@@ -152,7 +152,7 @@ export const Reflection: React.FC = () => {
             className="text-white"
             onClick={() => navigate("/dashboard")}
           >
-            ← Dasbor
+            ← Dashboard
           </Button>
         </div>
       </nav>

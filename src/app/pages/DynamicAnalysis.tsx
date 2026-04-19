@@ -72,7 +72,7 @@ export const DynamicAnalysis: React.FC = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <h1 className="text-2xl font-bold">SYNERGY - Analisis Dinamis</h1>
           <Button variant="ghost" className="text-white" onClick={() => navigate('/dashboard')}>
-            ← Dasbor
+            ← Dasboard
           </Button>
         </div>
       </nav>
@@ -104,12 +104,14 @@ export const DynamicAnalysis: React.FC = () => {
           </div>
 
           {/* Graph */}
-          <div className="bg-white rounded-2xl p-8 shadow-xl mb-8">
+          <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-xl mb-8 overflow-hidden">
             <h3 className="text-2xl font-bold mb-6 text-center">
               Proyeksi Produksi Plastik (Juta Ton)
             </h3>
-            <ResponsiveContainer width="100%" height={400}>
-              <LineChart data={DATA}>
+            <ResponsiveContainer width="100%" height={250} className="sm:h-[400px]">
+              <LineChart data={DATA}
+              margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+>
                 <CartesianGrid key="grid" strokeDasharray="3 3" />
                 <XAxis key="xaxis" dataKey="year" />
                 <YAxis key="yaxis" />
@@ -166,42 +168,42 @@ export const DynamicAnalysis: React.FC = () => {
                     )}
                   </div>
 
-                  <div className="flex gap-3">
+                  <div className="grid grid-cols-3 gap-2 sm:flex sm:gap-3">
                     <button
                       onClick={() => handlePrediction(prediction.component, 'increase')}
                       disabled={submitted}
-                      className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all ${
+                      className={`flex-1 px-2 py-2 sm:px-4 sm:py-3 text-xs sm:text-base rounded-lg border-2 transition-all ${
                         prediction.userAnswer === 'increase'
                           ? 'bg-green-500 text-white border-green-600'
                           : 'bg-white border-gray-300 hover:border-green-500'
                       } ${submitted ? 'opacity-75 cursor-not-allowed' : 'cursor-pointer'}`}
                     >
                       <TrendingUp className="w-5 h-5 mx-auto mb-1" />
-                      <div className="font-semibold">Meningkat</div>
+                      <div className="font-semibold leading-tight">Meningkat</div>
                     </button>
                     <button
                       onClick={() => handlePrediction(prediction.component, 'stable')}
                       disabled={submitted}
-                      className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all ${
+                      className={`flex-1 px-2 py-2 sm:px-4 sm:py-3 text-xs sm:text-base rounded-lg border-2 transition-all ${
                         prediction.userAnswer === 'stable'
                           ? 'bg-yellow-500 text-white border-yellow-600'
                           : 'bg-white border-gray-300 hover:border-yellow-500'
                       } ${submitted ? 'opacity-75 cursor-not-allowed' : 'cursor-pointer'}`}
                     >
                       <div className="text-2xl mb-1">━</div>
-                      <div className="font-semibold">Stabil</div>
+                      <div className="font-semibold leading-tight">Stabil</div>
                     </button>
                     <button
                       onClick={() => handlePrediction(prediction.component, 'decrease')}
                       disabled={submitted}
-                      className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all ${
+                      className={`flex-1 px-2 py-2 sm:px-4 sm:py-3 text-xs sm:text-base rounded-lg border-2 transition-all ${
                         prediction.userAnswer === 'decrease'
                           ? 'bg-red-500 text-white border-red-600'
                           : 'bg-white border-gray-300 hover:border-red-500'
                       } ${submitted ? 'opacity-75 cursor-not-allowed' : 'cursor-pointer'}`}
                     >
                       <TrendingUp className="w-5 h-5 mx-auto mb-1 rotate-180" />
-                      <div className="font-semibold">Menurun</div>
+                      <div className="font-semibold leading-tight">Menurun</div>
                     </button>
                   </div>
 
@@ -212,8 +214,8 @@ export const DynamicAnalysis: React.FC = () => {
                         Jelaskan alasan Anda (opsional):
                       </label>
                       <textarea
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                        rows={2}
+                        className="w-full max-w-full px-3 py-2 border border-gray-300 rounded-lg text-sm sm:text-base resize-none break-words"
+                        rows={3}
                         placeholder="Mengapa Anda berpikir komponen ini akan berubah seperti itu?"
                         value={reasoning[prediction.component] || ''}
                         onChange={(e) => setReasoning({ ...reasoning, [prediction.component]: e.target.value })}
@@ -265,7 +267,7 @@ export const DynamicAnalysis: React.FC = () => {
                     className="bg-[#2D6A4F] hover:bg-[#40916C]"
                     onClick={handleContinue}
                   >
-                    Selanjutnya → Simulasi Sistem: Perjalanan Plastik
+                    Mulai Simulasi Sistem →
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </div>

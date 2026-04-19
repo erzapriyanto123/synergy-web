@@ -92,7 +92,7 @@ export const SystemSimulation: React.FC = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <h1 className="text-2xl font-bold">SYNERGY - Simulasi Sistem</h1>
           <Button variant="ghost" className="text-white" onClick={() => navigate('/dashboard')}>
-            ← Dasbor
+            ← Dashboard
           </Button>
         </div>
       </nav>
@@ -150,7 +150,7 @@ export const SystemSimulation: React.FC = () => {
                 </div>
 
                 {/* Visual Representation */}
-                <div className="mb-8 bg-gradient-to-br from-blue-50 to-green-50 rounded-xl p-12 min-h-96 flex items-center justify-center">
+                <div className="mb-8 bg-gradient-to-br from-blue-50 to-green-50 rounded-xl p-4 sm:p-12 min-h-[250px] sm:min-h-96 flex items-center justify-center">
                   <SimulationVisual type={stage.visual} />
                 </div>
 
@@ -238,8 +238,7 @@ export const SystemSimulation: React.FC = () => {
                     className="bg-[#2D6A4F] hover:bg-[#40916C] w-full"
                     size="lg"
                   >
-                    Selanjutnya → Solusi Kimia Hijau
-                    <ArrowRight className="ml-2 w-5 h-5" />
+                    Eksplor Solusi Kimia Hijau 🌱
                   </Button>
                 </motion.div>
               )}
@@ -261,14 +260,14 @@ const SimulationVisual: React.FC<SimulationVisualProps> = ({ type }) => {
     case 'production':
       return (
         <div className="w-full h-full flex items-center justify-center">
-           <div className="w-full max-w-4xl aspect-video">
+           <div className="w-full aspect-video sm:max-w-4xl">
         <video
           src={video1}
           autoPlay
           loop
           muted
           controls
-          className="w-full h-full rounded-lg shadow-lg"
+          className="w-full h-full object-cover rounded-lg shadow-lg"
             />
           </div>
         </div>
@@ -277,14 +276,14 @@ const SimulationVisual: React.FC<SimulationVisualProps> = ({ type }) => {
     case 'waste':
       return (
         <div className="w-full h-full flex items-center justify-center">
-          <div className="w-full max-w-4xl aspect-video">
+          <div className="w-full aspect-video sm:max-w-4xl">
         <video
           src={video2}
           autoPlay
           loop
           muted
           controls
-          className="w-full h-full rounded-lg shadow-lg"
+          className="w-full h-full object-cover rounded-lg shadow-lg"
             />
           </div>
         </div>
@@ -293,14 +292,14 @@ const SimulationVisual: React.FC<SimulationVisualProps> = ({ type }) => {
     case 'microplastic':
       return (
         <div className="w-full h-full flex items-center justify-center">
-            <div className="w-full max-w-4xl aspect-video">
+            <div className="w-full aspect-video sm:max-w-4xl">
         <video
           src={video3}
           autoPlay
           loop
           muted
           controls
-          className="w-full h-full rounded-lg shadow-lg"
+          className="w-full h-full object-cover rounded-lg shadow-lg"
             />
           </div>
         </div>
@@ -309,14 +308,14 @@ const SimulationVisual: React.FC<SimulationVisualProps> = ({ type }) => {
     case 'foodchain':
       return (
         <div className="w-full h-full flex items-center justify-center">
-            <div className="w-full max-w-4xl aspect-video">
+            <div className="w-full aspect-video sm:max-w-4xl">
         <video
           src={video4}
           autoPlay
           loop
           muted
           controls
-          className="w-full h-full rounded-lg shadow-lg"
+          className="w-full h-full object-cover rounded-lg shadow-lg"
             />
           </div>
         </div>
@@ -325,14 +324,14 @@ const SimulationVisual: React.FC<SimulationVisualProps> = ({ type }) => {
     case 'human':
       return (
         <div className="w-full h-full flex items-center justify-center">
-            <div className="w-full max-w-4xl aspect-video">
+            <div className="w-full aspect-video sm:max-w-4xl">
         <video
           src={video5}
           autoPlay
           loop
           muted
           controls
-          className="w-full h-full rounded-lg shadow-lg"
+          className="w-full h-full object-cover rounded-lg shadow-lg"
             />
           </div>
         </div>

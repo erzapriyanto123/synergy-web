@@ -40,20 +40,20 @@ interface CorrectConnection {
 
 const NODES: Node[] = [
   // Top row - shifted up
-  { id: 'production', label: 'Produksi', x: 15, y: 15, color: '#e76f51', icon: <Factory className="w-6 h-6" />, tooltip: 'Pembuatan produk plastik' },
-  { id: 'consumption', label: 'Konsumsi', x: 35, y: 9, color: '#f4a261', icon: <ShoppingCart className="w-6 h-6" />, tooltip: 'Penggunaan produk plastik' },
-  { id: 'waste', label: 'Limbah', x: 55, y: 9, color: '#264653', icon: <Trash2 className="w-6 h-6" />, tooltip: 'Material plastik yang dibuang' },
+  { id: 'production', label: 'Produksi', x: 15, y: 15, color: '#e76f51', icon: <Factory className="w-4 h-4 sm:w-6 sm:h-6" />, tooltip: 'Pembuatan produk plastik' },
+  { id: 'consumption', label: 'Konsumsi', x: 35, y: 9, color: '#f4a261', icon: <ShoppingCart className="w-4 h-4 sm:w-6 sm:h-6" />, tooltip: 'Penggunaan produk plastik' },
+  { id: 'waste', label: 'Limbah', x: 55, y: 9, color: '#264653', icon: <Trash2 className="w-4 h-4 sm:w-6 sm:h-6" />, tooltip: 'Material plastik yang dibuang' },
  
   // Middle row - shifted up
-  { id: 'economy', label: 'Ekonomi', x: 8, y: 38, color: '#0077b6', icon: <DollarSign className="w-6 h-6" />, tooltip: 'Biaya dan manfaat ekonomi' },
-  { id: 'social', label: 'Sosial', x: 83, y: 38, color: '#f72585', icon: <Users className="w-6 h-6" />, tooltip: 'Dampak pada komunitas dan masyarakat' },
-  { id: 'environment', label: 'Lingkungan', x: 75, y: 15, color: '#2d6a4f', icon: <CloudRain className="w-6 h-6" />, tooltip: 'Ekosistem alami dan lingkungan' },
+  { id: 'economy', label: 'Ekonomi', x: 8, y: 38, color: '#0077b6', icon: <DollarSign className="w-4 h-4 sm:w-6 sm:h-6" />, tooltip: 'Biaya dan manfaat ekonomi' },
+  { id: 'social', label: 'Sosial', x: 83, y: 38, color: '#f72585', icon: <Users className="w-4 h-4 sm:w-6 sm:h-6" />, tooltip: 'Dampak pada komunitas dan masyarakat' },
+  { id: 'environment', label: 'Lingkungan', x: 75, y: 15, color: '#2d6a4f', icon: <CloudRain className="w-4 h-4 sm:w-6 sm:h-6" />, tooltip: 'Ekosistem alami dan lingkungan' },
  
   // Bottom row - shifted up
-  { id: 'sustainability', label: 'Keberlanjutan', x: 15, y: 64, color: '#40916C', icon: <Sprout className="w-6 h-6" />, tooltip: 'Tujuan pembangunan berkelanjutan' },
-  { id: 'policy', label: 'Kebijakan', x: 35, y: 66, color: '#457b9d', icon: <Target className="w-6 h-6" />, tooltip: 'Regulasi dan hukum pemerintah' },
-  { id: 'technology', label: 'Teknologi', x: 75, y: 64, color: '#38bdf8', icon: <Globe className="w-6 h-6" />, tooltip: 'Inovasi dalam produksi dan pengelolaan plastik' },
-  { id: 'lifecycle', label: 'Siklus Hidup', x: 55, y: 66, color: '#fbbf24', icon: <Leaf className="w-6 h-6" />, tooltip: 'Perjalanan plastik dari produksi hingga limbah'}
+  { id: 'sustainability', label: 'Keberlanjutan', x: 15, y: 64, color: '#40916C', icon: <Sprout className="w-4 h-4 sm:w-6 sm:h-6" />, tooltip: 'Tujuan pembangunan berkelanjutan' },
+  { id: 'policy', label: 'Kebijakan', x: 35, y: 66, color: '#457b9d', icon: <Target className="w-4 h-4 sm:w-6 sm:h-6" />, tooltip: 'Regulasi dan hukum pemerintah' },
+  { id: 'technology', label: 'Teknologi', x: 75, y: 64, color: '#38bdf8', icon: <Globe className="w-4 h-4 sm:w-6 sm:h-6" />, tooltip: 'Inovasi dalam produksi dan pengelolaan plastik' },
+  { id: 'lifecycle', label: 'Siklus Hidup', x: 55, y: 66, color: '#fbbf24', icon: <Leaf className="w-4 h-4 sm:w-6 sm:h-6" />, tooltip: 'Perjalanan plastik dari produksi hingga limbah'}
 ];
 
 
@@ -229,7 +229,7 @@ export const ConnectionActivity: React.FC = () => {
                 <span className="font-semibold text-sm sm:text-base">Skor: {score}</span>
               </div>
               <Button variant="ghost" className="text-white text-sm sm:text-base" onClick={() => navigate('/dashboard')}>
-                ← Dasbor
+                ← Dashboard
               </Button>
             </div>
           </div>
@@ -367,11 +367,11 @@ export const ConnectionActivity: React.FC = () => {
                       transition={{ delay: Math.random() * 0.5, type: "spring" }}
                     >
                       <div
-                        className="w-20 h-20 rounded-full flex flex-col items-center justify-center text-white font-bold text-center shadow-lg border-4 border-white/30 backdrop-blur-sm"
+                        className="w-14 h-14 sm:w-20 sm:h-20 rounded-full flex flex-col items-center justify-center text-white font-bold text-center shadow-lg border-4 border-white/30 backdrop-blur-sm"
                         style={{ backgroundColor: node.color }}
                       >
                         {node.icon}
-                        <span className="text-xs mt-1">{node.label.split(' ')[0]}</span>
+                        <span className="text-[10px] sm:text-xs mt-1">{node.label.split(' ')[0]}</span>
                       </div>
                     </motion.div>
                   </TooltipTrigger>

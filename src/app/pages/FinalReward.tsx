@@ -243,7 +243,7 @@ export const FinalReward: React.FC = () => {
                   className="bg-[#2D6A4F] hover:bg-[#40916C]"
                 >
                   <Home className="w-5 h-5 mr-2" />
-                  Kembali ke Dasbor
+                  Kembali ke Dashboard
                 </Button>
               </div>
             </div>

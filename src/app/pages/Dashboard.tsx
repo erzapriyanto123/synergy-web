@@ -86,13 +86,13 @@ export const Dashboard: React.FC = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Top Navigation */}
       <nav className="bg-[#2D6A4F] text-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
             <div className="flex items-center gap-3">
               <Leaf className="w-8 h-8" />
               <h1 className="text-2xl font-bold">SYNERGY</h1>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-6 text-xs sm:text-base">
               <div className="flex items-center gap-2">
                 <Star className="w-5 h-5 text-[#F4A261]" />
                 <span className="font-semibold">{user?.points ?? 0} {t('dashboard.points')}</span>
@@ -195,7 +195,7 @@ export const Dashboard: React.FC = () => {
               />
               <LearningModule 
                 title={t('dashboard.module3.title')}
-                description={t('dashboard.module3.desc')}
+                description="Pilih dan kenali komponen dalam sistem plastik"
                 completed={(user?.completedActivities ?? []).includes('drag-drop')}
                 onClick={() => navigate('/drag-drop-activity')}
               />
@@ -250,7 +250,7 @@ export const Dashboard: React.FC = () => {
                   navigate(`/${nextModule || 'problem-trigger'}`);
                 }}
               >
-                {t('dashboard.continue')}
+                Mulai Belajar 🚀
               </Button>
             </div>
           </Card>
