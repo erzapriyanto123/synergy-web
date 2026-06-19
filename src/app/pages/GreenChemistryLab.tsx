@@ -312,7 +312,7 @@ export const GreenChemistryLab: React.FC = () => {
             >
               <div className="bg-gradient-to-r from-[#2D6A4F]/10 via-[#40916C]/10 to-[#2A9D8F]/10 rounded-2xl p-6 border-l-4 border-[#2D6A4F]">
                 <p className="text-center text-base sm:text-lg text-gray-800 font-medium leading-relaxed">
-                  ✨ Prinsip-prinsip ini bekerja bersama untuk mengubah sistem plastik, dari produksi hingga akhir masa pakai.
+                  ✨ Prinsip-prinsip ini bekerja bersama untuk mengubah sistem penggunaan plastik sekali pakai, dari produksi hingga akhir masa pakai.
                 </p>
               </div>
             </motion.div>
@@ -336,7 +336,7 @@ export const GreenChemistryLab: React.FC = () => {
                   🔗 Koneksi Sistem
                 </div>
                 <p className="text-lg sm:text-xl text-gray-800 font-semibold max-w-3xl mx-auto leading-relaxed">
-                  Solusi ini tidak berdiri sendiri, tetapi bekerja pada berbagai bagian sistem plastik yang saling terhubung.
+                  Solusi ini tidak berdiri sendiri, tetapi bekerja pada berbagai bagian sistem yang saling terhubung.
                 </p>
               </div>
             </div>
@@ -353,7 +353,7 @@ export const GreenChemistryLab: React.FC = () => {
             <div className="text-center mb-8">
               <div className="inline-block bg-gradient-to-r from-[#2D6A4F] to-[#40916C] text-transparent bg-clip-text mb-2">
                 <h3 className="text-2xl sm:text-4xl font-bold px-2">
-                  Transformasi Sistem Plastik
+                  Transformasi Sistem Penggunaan Plastik Sekali Pakai
                 </h3>
               </div>
               <p className="text-base sm:text-lg text-gray-600">melalui Green Chemistry</p>
@@ -575,7 +575,7 @@ export const GreenChemistryLab: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
               >
-                Ketika prinsip-prinsip green chemistry diterapkan secara bersama, perubahan tidak hanya terjadi pada satu bagian, tetapi menyebar ke seluruh sistem plastik.
+                Ketika prinsip-prinsip green chemistry diterapkan secara bersama, perubahan tidak hanya terjadi pada satu bagian, tetapi menyebar ke seluruh sistem.
               </motion.p>
             </div>
           </motion.div>
