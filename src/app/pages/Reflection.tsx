@@ -18,7 +18,7 @@ const QUESTIONS: Question[] = [
   {
     id: "complex",
     question:
-      "Mengapa masalah plastik dianggap sebagai sistem KOMPLEKS?",
+      "Mengapa masalah plastik sekali pakai dianggap sebagai sistem KOMPLEKS?",
     options: [
       "A. Memiliki banyak komponen yang saling terhubung",
       "B. Melibatkan berbagai pemangku kepentingan (produsen, konsumen, pemerintah)",
@@ -27,17 +27,17 @@ const QUESTIONS: Question[] = [
     ],
     correct: ["Semua jawaban benar"],
     explanation:
-      "Sistem kompleks memiliki banyak bagian yang saling terhubung di mana perubahan beriak ke seluruh sistem. Sistem plastik melibatkan produksi, konsumsi, limbah, lingkungan, ekonomi, teknologi, kebijakan, dan lainnya - semua saling mempengaruhi.",
+      "Sistem kompleks memiliki banyak bagian yang saling terhubung di mana perubahan beriak ke seluruh sistem. Sistem penggunaan plastik sekali pakai melibatkan produksi, konsumsi, limbah, lingkungan, ekonomi, teknologi, kebijakan, dan lainnya - semua saling mempengaruhi.",
   },
   {
     id: "interconnected",
     question:
-      "Bagaimana sistem plastik menunjukkan KETERKAITAN?",
+      "Bagaimana sistem penggunaan plastik sekali pakai menunjukkan KETERKAITAN?",
     options: [
-      "A.Produksi terhubung dengan konsumsi dan iklim",
+      "A. Produksi terhubung dengan konsumsi dan iklim",
       "B. Limbah terhubung dengan lingkungan dan kesehatan manusia",
       "C. Teknologi terhubung dengan produksi dan pengurangan limbah",
-      "DSemua komponen mempengaruhi banyak komponen lainnya",
+      "D. Semua komponen mempengaruhi banyak komponen lainnya",
     ],
     correct: [
       "Semua komponen mempengaruhi banyak komponen lainnya",
@@ -47,9 +47,9 @@ const QUESTIONS: Question[] = [
   },
   {
     id: "dynamic",
-    question: "Apa yang membuat sistem plastik DINAMIS?",
+    question: "Apa yang membuat sistem penggunaan plastik sekali pakai DINAMIS?",
     options: [
-      "A.Berubah seiring waktu",
+      "A. Berubah seiring waktu",
       "B. Loop umpan balik menciptakan siklus sebab-akibat yang berkelanjutan",
       "C. Perubahan kecil dapat berkembang menjadi dampak besar",
       "D. Semua jawaban benar",
@@ -61,9 +61,9 @@ const QUESTIONS: Question[] = [
   {
     id: "impacts",
     question:
-      "Mana yang menunjukkan DAMPAK JANGKA PANJANG dalam sistem plastik?",
+      "Mana yang menunjukkan DAMPAK JANGKA PANJANG dalam sistem penggunaan plastik sekali pakai?",
     options: [
-      "A.Plastik bertahan 450+ tahun di lingkungan",
+      "A. Plastik bertahan 450+ tahun di lingkungan",
       "B. Mikroplastik terakumulasi dalam rantai makanan selama puluhan tahun",
       "C. Efek kesehatan mungkin tidak muncul bertahun-tahun setelah paparan",
       "D. Semua jawaban benar",
@@ -75,10 +75,10 @@ const QUESTIONS: Question[] = [
   {
     id: "feedback",
     question:
-      "Identifikasi LOOP UMPAN BALIK dalam sistem plastik:",
+      "Identifikasi LOOP UMPAN BALIK dalam sistem penggunaan plastik sekali pakai:",
     options: [
       "A. Lebih banyak produksi → lebih banyak limbah → kerusakan lingkungan → tekanan publik → perubahan kebijakan → pengurangan produksi",
-      "B.Teknologi meningkatkan daur ulang → produksi baru berkurang → investasi teknologi berkurang",
+      "B. Teknologi meningkatkan daur ulang → produksi baru berkurang → investasi teknologi berkurang",
       "C. Pertumbuhan ekonomi → lebih banyak konsumsi → lebih banyak produksi → lebih banyak aktivitas ekonomi",
       "D. A dan C benar",
     ],
