@@ -195,7 +195,7 @@ export const Dashboard: React.FC = () => {
               />
               <LearningModule 
                 title={t('dashboard.module3.title')}
-                description="Pilih dan kenali komponen dalam sistem plastik"
+                description="Pilih dan kenali komponen dalam sistem penggunaan plastik sekali pakai"
                 completed={(user?.completedActivities ?? []).includes('drag-drop')}
                 onClick={() => navigate('/drag-drop-activity')}
               />
@@ -213,7 +213,7 @@ export const Dashboard: React.FC = () => {
               />
               <LearningModule 
                 title={t('dashboard.module6.title')}
-                description={t('dashboard.module6.desc')}
+                description="Saksikan dampak penggunaan plastik sekali pakai melalui simulasi interaktif"
                 completed={(user?.completedActivities ?? []).includes('simulation')}
                 onClick={() => navigate('/system-simulation')}
               />
