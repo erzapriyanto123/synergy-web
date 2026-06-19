@@ -174,7 +174,7 @@ export const SystemVisualization: React.FC = () => {
           <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
             <img
               src={systemDiagram}
-              alt="Ilustrasi Diagram Sistem Plastik"
+              alt="Ilustrasi Diagram Sistem Penggunaan Plastik Sekali Pakai"
               className="w-full max-w-4xl mx-auto rounded-lg"
             />
           </div>
