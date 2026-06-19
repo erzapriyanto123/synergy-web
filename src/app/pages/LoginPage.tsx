@@ -144,7 +144,7 @@ export const LoginPage: React.FC = () => {
                       <li className="flex items-start gap-2">
                         <span className="text-[#2D6A4F] font-bold">•</span>
                         <span className="text-gray-700">
-                          <strong>Visualisasi Sistem:</strong> Mempelajari hubungan antar komponen sistem plastik.
+                          <strong>Visualisasi Sistem:</strong> Mempelajari hubungan antar komponen sistem penggunaan plastik sekali pakai.
                         </span>
                       </li>
                       <li className="flex items-start gap-2">
@@ -168,7 +168,7 @@ export const LoginPage: React.FC = () => {
                       <li className="flex items-start gap-2">
                         <span className="text-[#2D6A4F] font-bold">•</span>
                         <span className="text-gray-700">
-                          <strong>Solusi Green Chemistry:</strong> Mempelajari prinsip Green Chemistry untuk memperbaiki sistem plastik.
+                          <strong>Solusi Green Chemistry:</strong> Mempelajari prinsip Green Chemistry untuk memperbaiki sistem penggunaan plastik sekali pakai.
                         </span>
                       </li>
                     </ul>
@@ -253,9 +253,9 @@ export const LoginPage: React.FC = () => {
                         1
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-[#2D6A4F] mb-2">Mengidentifikasi komponen sistem plastik</h3>
+                        <h3 className="text-lg font-bold text-[#2D6A4F] mb-2">Mengidentifikasi komponen sistem penggunaan plastik sekali pakai</h3>
                         <p className="text-gray-700 text-sm">
-                          Mengenali berbagai elemen yang membentuk sistem plastik seperti produksi, konsumsi, limbah, teknologi, dan lingkungan.
+                          Mengenali berbagai elemen yang membentuk sistem penggunaan plastik sekali pakai seperti produksi, konsumsi, limbah, teknologi, dan lingkungan.
                         </p>
                       </div>
                     </div>
@@ -270,7 +270,7 @@ export const LoginPage: React.FC = () => {
                       <div>
                         <h3 className="text-lg font-bold text-[#40916C] mb-2">Menjelaskan hubungan antar komponen</h3>
                         <p className="text-gray-700 text-sm">
-                          Memahami dan menjelaskan bagaimana komponen-komponen dalam sistem plastik saling terkait dan mempengaruhi satu sama lain.
+                          Memahami dan menjelaskan bagaimana komponen-komponen dalam sistem penggunaan plastik sekali pakai saling terkait dan mempengaruhi satu sama lain.
                         </p>
                       </div>
                     </div>
@@ -285,7 +285,7 @@ export const LoginPage: React.FC = () => {
                       <div>
                         <h3 className="text-lg font-bold text-[#2A9D8F] mb-2">Menganalisis dinamika sistem</h3>
                         <p className="text-gray-700 text-sm">
-                          Menganalisis perubahan dan pola perilaku sistem plastik dari waktu ke waktu berdasarkan berbagai skenario dan kondisi.
+                          Menganalisis perubahan dan pola perilaku sistem penggunaan plastik sekali pakai dari waktu ke waktu berdasarkan berbagai skenario dan kondisi.
                         </p>
                       </div>
                     </div>
@@ -300,7 +300,7 @@ export const LoginPage: React.FC = () => {
                       <div>
                         <h3 className="text-lg font-bold text-[#F4A261] mb-2">Merancang solusi green chemistry</h3>
                         <p className="text-gray-700 text-sm">
-                          Mengaplikasikan prinsip-prinsip kimia hijau untuk merancang solusi berkelanjutan terhadap masalah sistem plastik.
+                          Mengaplikasikan prinsip-prinsip kimia hijau untuk merancang solusi berkelanjutan terhadap masalah sistem penggunaan plastik sekali pakai.
                         </p>
                       </div>
                     </div>
@@ -314,7 +314,7 @@ export const LoginPage: React.FC = () => {
                     </div>
                     <p className="text-sm text-gray-700">
                       Pembelajaran ini menggunakan pendekatan <strong>systems thinking</strong> untuk membantu Anda memahami 
-                      masalah plastik secara holistik dan menemukan solusi yang efektif melalui kimia hijau dan sustainability.
+                      masalah penggunaan plastik sekali pakai secara holistik dan menemukan solusi yang efektif melalui kimia hijau dan sustainability.
                     </p>
                   </div>
 
