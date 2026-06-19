@@ -258,12 +258,12 @@ const translations: Record<string, string> = {
   
   // System Visualization Page
   'systemViz.title': 'Visualisasi Sistem',
-  'systemViz.networkTitle': 'Jaringan Sistem Plastik',
+  'systemViz.networkTitle': 'Jaringan Sistem Penggunaan Plastik Sekali Pakai',
   'systemViz.instruction': 'Klik pada simpul mana pun untuk menjelajahi perannya dalam sistem. Setiap komponen terhubung.',
   'systemViz.insightTitle': '💡 Wawasan Berpikir Sistem',
   'systemViz.insightText': 'Perhatikan bagaimana setiap komponen saling terhubung. Perubahan di satu bagian sistem memengaruhi banyak bagian lainnya. Inilah esensi dari berpikir sistem - memahami hubungan, bukan hanya bagian-bagian individual.',
   'systemViz.continue': 'Lanjutkan',
-  'systemViz.dialogSubtitle': 'Jelajahi peran dan dampak komponen ini dalam sistem plastik.',
+  'systemViz.dialogSubtitle': 'Jelajahi peran dan dampak komponen ini dalam sistem penggunaan plastik sekali pakai.',
   'systemViz.descriptionTitle': 'Deskripsi',
   'systemViz.exampleTitle': 'Contoh Nyata',
   'systemViz.impactsTitle': 'Dampak Sistemik',
