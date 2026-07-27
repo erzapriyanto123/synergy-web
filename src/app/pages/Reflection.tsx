@@ -177,9 +177,9 @@ export const Reflection: React.FC = () => {
               Desain Plastik Biodegradable: Solusi Sistem
             </h3>
             <p className="text-gray-600 mb-6">
-              Tonton video ini untuk melihat bagaimana prinsip
-              kimia hijau menciptakan plastik biodegradable yang
-              bekerja dengan sistem alami alih-alih melawannya.
+              Tonton video ini untuk mengetahui bagaimana prinsip
+              kimia hijau dimanfaatkan dalam menciptakan plastik biodegradable yang
+              lebih ramah lingkungan.
             </p>
 
             {/* Video Placeholder */}
