@@ -20,85 +20,85 @@ const PRINCIPLES: Principle[] = [
     id: 1,
     title: '1. Pencegahan',
     description: 'Lebih baik mencegah terbentuknya limbah daripada harus mengolah atau membersihkannya setelah terbentuk',
-    example: 'Produksi plastik dengan desain minim limbah (zero waste manufacturing): merancang produk yang tidak menghasilkan produk sampingan berbahaya',
-    plasticApplication: 'Mengurangi produksi plastik sekali pakai sejak awal (misalnya mengganti kantong plastik dengan reusable bag)'
+    example: 'Merancang proses produksi yang menghasilkan limbah seminimal mungkin (zero waste manufacturing).',
+    plasticApplication: 'Mengurangi produksi dan penggunaan plastik sekali pakai melalui desain produk yang dapat digunakan kembali (reuse) atau sistem isi ulang (refill), sehingga jumlah limbah plastik yang dihasilkan menjadi lebih sedikit.'
   },
   {
     id: 2,
     title: '2. Ekonomi Atom',
-    description: 'Merancang sintesis sehingga produk akhir mengandung proporsi maksimum dari bahan awal',
+    description: 'Kimia hijau mengedepankan nilai ekonomi tinggi. Nilai ekonomi atom diukur berdasarkan jumlah bahan kimia yang berhasil diubah menjadi produk',
     example: 'Reaksi yang menggabungkan semua atom dari reaktan ke dalam produk',
-    plasticApplication: 'Sintesis polimer dengan reaksi adisi (tanpa produk samping), produksi plastik dengan limbah minimum → mengurangi residu kimia yang ikut mencemari lingkungan'
+    plasticApplication: 'Produksi polimer melalui polimerisasi adisi, seperti pembentukan polietilena dari etena, yang menghasilkan sangat sedikit produk samping sehingga penggunaan bahan baku menjadi lebih efisien'
   },
   {
     id: 3,
-    title: '3. Sintesis Kurang Berbahaya',
+    title: '3. Pengurangan Dampak Sintesis Berbahaya',
     description: 'Merancang sintesis untuk menggunakan dan menghasilkan zat dengan toksisitas rendah atau tanpa toksisitas',
-    example: 'Mengganti pelarut beracun dengan air atau alternatif hijau',
+    example: 'Mengganti pelarut organik berbahaya dengan air atau pelarut ramah lingkungan.',
     plasticApplication: 'Memproduksi plastik tanpa katalis beracun atau aditif berbahaya, menghindari penggunaan monomer beracun seperti vinil klorida berlebih'
   },
   {
     id: 4,
-    title: '4. Bahan Kimia Lebih Aman',
-    description: 'Merancang produk kimia agar sepenuhnya efektif namun memiliki toksisitas rendah atau tanpa toksisitas',
+    title: '4. Mendesain Bahan Kimia Lebih Aman',
+    description: 'Merancang produk kimia agar tetap berfungsi dengan baik tetapi memiliki dampak negatif yang lebih rendah terhadap kesehatan dan lingkungan.',
     example: 'Membuat bioplastik yang tidak beracun',
-    plasticApplication: 'Plastik dirancang tidak menghasilkan mikroplastik berbahaya bagi organisme laut'
+    plasticApplication: 'Mengembangkan material plastik yang tidak melepaskan zat aditif berbahaya selama digunakan maupun setelah menjadi limbah.'
   },
   {
     id: 5,
-    title: '5. Pelarut Lebih Aman',
-    description: 'Minimalkan penggunaan zat tambahan seperti pelarut atau ganti dengan yang lebih aman jika diperlukan',
+    title: '5. Penggunaan Pelarut yang Lebih Aman',
+    description: 'Mengurangi penggunaan pelarut dan zat tambahan atau menggantinya dengan bahan yang lebih aman.',
     example: 'Menggunakan air atau CO₂ sebagai pelarut',
-    plasticApplication: 'Polimerisasi plastik menggunakan proses berbasis air atau tanpa pelarut'
+    plasticApplication: 'Menggunakan proses polimerisasi berbasis air (water-based polymerization) atau proses tanpa pelarut (solvent-free process) sehingga limbah pelarut berbahaya dapat dikurangi.'
   },
   {
     id: 6,
     title: '6. Efisiensi Energi',
-    description: 'Minimalkan kebutuhan energi dan jika memungkinkan dilakukan pada suhu dan tekanan ruang',
-    example: 'Memilih reaksi pada suhu ruangan daripada pemanasan',
-    plasticApplication: 'Mengurangi emisi karbon dari proses pengolahan limbah'
+    description: 'Memilih metode yang paling tidak boros energi. Menghindari pemanasan dan pendinginan, serta kondisi bertekanan dan vakum (suhu dan tekanan optimal) yang efisien',
+    example: 'Reaksi berlangsung pada suhu ruang tanpa pemanasan berlebih',
+    plasticApplication: 'Mengembangkan proses produksi dan daur ulang plastik yang membutuhkan energi lebih rendah sehingga emisi gas rumah kaca dapat dikurangi.'
   },
   {
     id: 7,
-    title: '7. Bahan Baku Terbarukan',
-    description: 'Gunakan bahan baku dari sumber terbarukan bukan dengan daripada yang terbatas',
-    example: 'Material berbasis tanaman daripada minyak bumi',
-    plasticApplication: 'Membuat bioplastik dari pati jagung, ganggang, atau limbah pertanian daripada bahan bakar fosil'
+    title: '7. PenggunaanBahan Baku Terbarukan',
+    description: 'Menggunakanbahan baku dari sumber terbarukan (dari nabati) dibandingkan bahan kimia setara lainnya yang berasal dari sumber petrokimia',
+    example: 'Menggunakan pati jagung atau tebu sebagai bahan baku bioplastik.',
+    plasticApplication: 'Mengembangkan bioplastik berbahan pati, selulosa, ganggang, atau limbah biomassa sebagai alternatif plastik berbasis minyak bumi.'
   },
   {
     id: 8,
-    title: '8. Kurangi Derivatif',
-    description: 'Hindari penggunaan langkah tambahan yang tidak perlu, yang memerlukan reagen tambahan dan menghasilkan limbah',
-    example: 'Sintesis langsung tanpa kelompok pelindung',
-    plasticApplication: 'Produksi plastik dibuat langsung dari bahan awal ke produk akhir tanpa banyak tahap tambahan'
+    title: '8. Penggunaan Bahan Turunan Kimia',
+    description: 'Perlu menghindari penggunaan bahan turunan kimia bila memungkinkan',
+    example: 'Sintesis langsung tanpa gugus pelindung',
+    plasticApplication: 'Merancang proses sintesis polimer dengan tahapan yang lebih sederhana sehingga penggunaan bahan kimia tambahan dan pembentukan limbah dapat diminimalkan.'
   },
   {
     id: 9,
-    title: '9. Katalisis',
-    description: 'Gunakan reagen katalitik (zat bantu) daripada reagen stoikiometrik',
-    example: 'Enzim yang dapat digunakan kembali berkali-kali',
-    plasticApplication: 'Gunakan biokatalis (enzim atau katalis ramah lingkungan) dalam pembuatan atau daur ulang plastik, sehingga proses lebih efisien dan menghasilkan lebih sedikit limbah serta memungkinkan plastik lebih mudah didaur ulang.'
+    title: '9. Penggunaan Kataliss',
+    description: 'Penggunaan katalis diutamakan karena dapat membantu meningkatkan selektivitas, meminimalkan limbah, dan mengurangi waktu reaksi dan kebutuhan energi',
+    example: 'Menggunakan enzim atau katalis logam yang dapat digunakan kembali.',
+    plasticApplication: 'Menggunakan katalis atau biokatalis dalam sintesis maupun daur ulang plastik sehingga proses berlangsung lebih cepat, membutuhkan energi lebih rendah, dan menghasilkan limbah yang lebih sedikit.'
   },
   {
     id: 10,
-    title: '10. Desain untuk Degradasi',
-    description: 'Merancang produk untuk terurai menjadi zat tidak berbahaya setelah digunakan',
+    title: '10. Mendesain Produk untuk Degradasi',
+    description: 'Mengupayakan mendesain produk yang terdegradasi yang akan mengurangi timbulnya limbah dan polusi yang dapat merusak lingkungan',
     example: 'Plastik biodegradable yang dapat terurai di tanah atau kompos tanpa meninggalkan mikroplastik berbahaya',
-    plasticApplication: 'Mengembangkan plastik yang dapat terurai sepenuhnya dalam waktu singkat (misalnya beberapa bulan), bukan bertahan ratusan tahun di lingkungan.'
+    plasticApplication: 'Mengembangkan plastik biodegradable yang dapat terdegradasi sesuai lingkungan penggunaannya sehingga tidak menumpuk sebagai sampah jangka panjang.'
   },
   {
     id: 11,
-    title: '11. Analisis real-time untuk pencegahan polusi',
-    description: 'Memantau proses secara langsung (real-time) selama reaksi berlangsung untuk mendeteksi dan mencegah terbentuknya zat berbahaya sejak awal',
+    title: '11. Analisis Real-time untuk Pencegahan Polusi',
+    description: 'Memantau reaksi secara langsung (real-time) untuk mendeteksi dan mencegah terbentuknya zat berbahaya sejak awal',
     example: 'Sensor yang dapat mendeteksi adanya zat berbahaya atau produk sampingan selama proses produksi',
-    plasticApplication: 'Memantau proses pembuatan plastik secara langsung sehingga emisi atau zat beracun bisa segera diketahui dan dicegah sebelum mencemari lingkungan'
+    plasticApplication: 'Menggunakan sistem pemantauan otomatis pada proses produksi plastik untuk mengendalikan emisi dan mencegah pelepasan bahan kimia berbahaya ke lingkungan'
   },
   {
     id: 12,
     title: '12. Kimia Aman untuk Pencegahan Kecelakaan',
-    description: 'Memilih bahan dan proses kimia yang aman sejak awal, sehingga dapat mengurangi risiko kecelakaan seperti kebakaran, ledakan, atau kebocoran zat berbahaya',
+    description: 'Memilih bahan kimia dan kondisi proses yang lebih aman sehingga mengurangi risiko kebakaran, ledakan, atau kebocoran bahan berbahaya',
     example: 'Menggunakan bahan kimia yang tidak mudah terbakar, tidak mudah meledak, dan tidak beracun',
-    plasticApplication: 'Menggunakan bahan dan proses dalam produksi plastik yang stabil dan tidak berbahaya, sehingga jika terjadi kebocoran atau kecelakaan, tidak membahayakan pekerja maupun lingkungan sekitar'
+    plasticApplication: 'Menggunakan bahan baku, pelarut, dan kondisi operasi yang lebih aman dalam industri plastik untuk melindungi pekerja, masyarakat, dan lingkungan dari risiko kecelakaan kimia.'
   }
 ];
 
