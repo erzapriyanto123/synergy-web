@@ -29,9 +29,9 @@ const NODES: SystemNode[] = [
     x: 12,
     y: 18,
     color: '#fbbf24',
-    description: 'Sistem ekonomi yang mendorong dan dipengaruhi oleh penggunaan plastik',
-    example: 'Industri plastik global bernilai $580 miliar per tahun',
-    impacts: ['Kekuatan pasar', 'Penciptaan lapangan kerja', 'Pertumbuhan ekonomi vs keberlanjutan']
+    description: 'Plastik memiliki nilai ekonomi yang tinggi karena biaya produksinya rendah dan aplikasinya sangat luas, mulai dari kemasan, otomotif, kesehatan, hingga elektronik. Industri plastik memberikan kontribusi terhadap pertumbuhan ekonomi dan penciptaan lapangan kerja. Namun, pencemaran plastik juga menimbulkan biaya ekonomi yang besar, seperti biaya pembersihan lingkungan, kerusakan sektor perikanan, pariwisata, dan kesehatan masyarakat Konsep ekonomi sirkular dikembangkan untuk mempertahankan nilai material plastik melalui penggunaan kembali, perbaikan, dan daur ulang sehingga mengurangi kebutuhan bahan baku baru',
+    example: 'Nilai industri plastik global mencapai sekitar US$580 miliar per tahun',
+    impacts: ['Mendorong pertumbuhan industri', 'Penciptaan lapangan kerja', 'Mendorong penerapan ekonomi sirkular']
   },
   {
     id: 'produksi',
@@ -39,9 +39,9 @@ const NODES: SystemNode[] = [
     x: 32,
     y: 15,
     color: '#40916C',
-    description: 'Produksi adalah proses pembuatan plastik di pabrik menggunakan bahan baku minyak bumi melalui proses kimia. Plastik sebagian besar dibuat dari minyak bumi dan gas alam yang mengandung senyawa hidrokarbon. Hidrokarbon tersusun dari atom karbon (C) dan hidrogen (H). Senyawa kecil seperti etena (C₂H₄) atau propilena (C₃H₆) disebut monomer, yaitu bahan dasar pembentuk plastik. Plastik terbentuk melalui reaksi kimia yang disebut polimerisasi, yaitu proses penggabungan banyak molekul monomer menjadi rantai panjang yang disebut polimer. Contohnya: Etena → Polietilena (PE). Semakin panjang rantai polimer, semakin kuat dan sulit plastik terurai di alam. Karena ikatan kimia dalam polimer sangat stabil, plastik dapat bertahan puluhan hingga ratusan tahun di lingkungan.',
-    example: 'Pabrik memproduksi 400 juta ton plastik per tahun menggunakan bahan bakar fosil',
-    impacts: ['Menggunakan energi dalam jumlah besar', 'Menghasilkan asap dan gas', 'Jumlah plastik yang beredar semakin banyak']
+    description: 'Produksi plastik merupakan proses pembuatan plastik di pabrik menggunakan bahan baku fosil, terutama minyak bumi dan gas alam, menjadi polimer sintetis melalui serangkaian proses kimia. Bahan baku tersebut diolah di kilang petrokimia menghasilkan monomer seperti etena (C₂H₄) dan propilena (C₃H₆). Monomer kemudian mengalami reaksi polimerisasi, yaitu penggabungan banyak molekul kecil menjadi rantai panjang yang disebut polimer, misalnya etena menjadi polietilena (PE). Panjang rantai polimer dan kuatnya ikatan karbon-karbon (C–C) menyebabkan plastik memiliki sifat ringan, kuat, tahan korosi, dan sulit terdegradasi secara alami. Sebagian besar plastik konvensional membutuhkan waktu puluhan hingga ratusan tahun untuk terurai sehingga berpotensi menimbulkan akumulasi limbah di lingkungan.',
+    example: 'Produksi plastik dunia telah melampaui 400 juta ton per tahun, dengan sekitar 98% masih menggunakan bahan baku berbasis bahan bakar fosil.',
+    impacts: ['Meningkatkan konsumsi minyak bumi dan gas alam', 'Menyebabkan emisi gas rumah kaca selama proses produksi', 'Menambah jumlah plastik yang berpotensi menjadi limbah setelah digunakan']
   },
   {
     id: 'konsumsi',
@@ -49,9 +49,9 @@ const NODES: SystemNode[] = [
     x: 54,
     y: 15,
     color: '#ff6b35',
-    description: 'Penggunaan produk plastik oleh individu dan industri',
-    example: '1 juta botol plastik dibeli setiap menit di seluruh dunia',
-    impacts: ['Sampah plastik bertambah', 'Terbentuk kebiasaan memakai barang sekali pakai']
+    description: 'Konsumsi merupakan tahap penggunaan produk plastik oleh masyarakat maupun industri. Plastik sekali pakai banyak digunakan karena ringan, murah, praktis, dan tahan air. Namun, sebagian besar produk tersebut hanya digunakan beberapa menit, sedangkan plastiknya tetap berada di lingkungan selama ratusan tahun apabila tidak dikelola dengan baik. Peningkatan konsumsi plastik berkaitan erat dengan pertumbuhan penduduk, urbanisasi, pola hidup praktis, dan perkembangan industri makanan serta minuman',
+    example: 'Sekitar 1 juta botol plastik dibeli setiap menit di seluruh dunia.',
+    impacts: ['Volume sampah plastik meningkat', 'Terbentuk kebiasaan memakai barang sekali pakai', 'Meningkatkan kebutuhan sistem pengelolaan limbah']
   },
   {
     id: 'limbah',
@@ -59,9 +59,9 @@ const NODES: SystemNode[] = [
     x: 76,
     y: 18,
     color: '#6b7280',
-    description: 'Limbah adalah sisa atau buangan dari suatu usaha dan/atau kegiatan manusia, baik domestik (rumah tangga) maupun industri, yang sudah tidak memiliki nilai atau manfaat ekonomis. Limbah plastik adalah plastik yang sudah tidak terpakai dan dibuang.',
-    example: 'Penumpukan sampah plastik di TPA, sungai, dan laut.',
-    impacts: ['Pencemaran tanah dan air', 'Hewan dapat memakan plastik'],
+    description: 'Limbah plastik merupakan sisa produk plastik yang sudah tidak digunakan lagi. Berbeda dengan limbah organik, sebagian besar plastik tidak dapat diuraikan oleh mikroorganisme karena memiliki struktur polimer yang stabil. Akibatnya, plastik lebih banyak mengalami fragmentasi menjadi potongan kecil hingga berukuran kurang dari 5 mm yang disebut mikroplastik. Pengelolaan limbah yang tidak memadai menyebabkan plastik banyak berakhir di tempat pembuangan akhir, sungai, maupun lautan.',
+    example: 'Jutaan ton sampah plastik masuk ke laut setiap tahun',
+    impacts: ['Pencemaran tanah dan air', 'Terbentuknya mikroplastik', 'Menurunkan kualitas lingkungan'],
     systemNote: '🎯 Catatan sistemik: Limbah memengaruhi lingkungan dan sosial.'
   },
   // Baris tengah
@@ -71,9 +71,9 @@ const NODES: SystemNode[] = [
     x: 10,
     y: 43,
     color: '#c084fc',
-    description: 'Dampak pada kesehatan manusia, perilaku, dan komunitas',
-    example: 'Komunitas dekat fasilitas plastik menghadapi tingkat kanker 50% lebih tinggi',
-    impacts: ['Gangguan kesehatan', 'Pola hidup konsumtif semakin kuat']
+    description: 'Penggunaan plastik mempengaruhi perilaku masyarakat, kesehatan, dan kualitas hidup. Kemudahan memperoleh plastik sekali pakai mendorong budaya konsumsi instan. Selain itu, paparan bahan kimia tertentu dari plastik maupun mikroplastik berpotensi mempengaruhi kesehatan manusia, meskipun dampak jangka panjangnya masih terus diteliti. Masyarakat yang tinggal di sekitar kawasan industri plastik atau lokasi pembuangan limbah memiliki risiko paparan polutan yang lebih tinggi dibandingkan wilayah lain',
+    example: 'Beberapa penelitian menunjukkan masyarakat di sekitar fasilitas produksi plastik memiliki risiko gangguan kesehatan yang lebih tinggi akibat paparan polusi industri',
+    impacts: ['Gangguan kesehatan', 'Menurunnya kualitas hidup masyarakat.']
   },
   {
     id: 'kebijakan',
@@ -81,9 +81,9 @@ const NODES: SystemNode[] = [
     x: 43,
     y: 43,
     color: '#a78bfa',
-    description: 'Kebijakan merupakan aturan, regulasi, atau keputusan yang dibuat pemerintah atau lembaga untuk mengatur aktivitas produksi, konsumsi, dan pengelolaan lingkungan.',
-    example: '127 negara telah melarang kantong plastik sekali pakai',
-    impacts: ['Industri mengubah proses produksi', 'Masyarakat mengurangi penggunaan plastik', 'Inovasi material alternatif meningkat', 'Sistem pengelolaan limbah menjadi lebih terarah'],
+    description: 'Kebijakan merupakan instrumen pemerintah untuk mengendalikan produksi, konsumsi, dan pengelolaan plastik. Kebijakan dapat berupa larangan plastik sekali pakai, tanggung jawab produsen (Extended Producer Responsibility/EPR), standar daur ulang, maupun insentif bagi penggunaan material ramah lingkungan. Kebijakan yang efektif mampu mengubah perilaku konsumen sekaligus mendorong inovasi industri menuju sistem yang lebih berkelanjutan.',
+    example: 'Lebih dari 120 negara telah menerapkan berbagai bentuk pembatasan terhadap kantong plastik sekali pakai.',
+    impacts: ['Industri mengubah proses produksi', 'Masyarakat mengurangi penggunaan plastik', 'Mendorong inovasi material alternatif meningkat', 'Mengubah praktik produksi industri.'],
     systemNote: '🎯 Catatan Sistemik: Kebijakan berfungsi sebagai pengendali sistem yang dapat mempercepat atau memperlambat perubahan pada komponen lain seperti industri, konsumsi masyarakat, limbah, dan kondisi iklim.'
   },
   {
@@ -92,9 +92,9 @@ const NODES: SystemNode[] = [
     x: 78,
     y: 43,
     color: '#fbbf24',
-    description: 'Siklus hidup adalah perjalanan plastik sejak diproduksi, digunakan, hingga dibuang atau didaur ulang. Plastik tidak mudah terurai karena mikroorganisme sulit memutus ikatan kimia pada rantai polimer. Plastik hanya mengalami proses degradasi fisik akibat cahaya matahari, panas, dan gesekan sehingga berubah menjadi mikroplastik.',
-    example: 'Kantong plastik rata-rata digunakan 12 menit, namun bertahan 450+ tahun',
-    impacts: ['Jika tidak dikelola, plastik bertahan sangat lama', 'Mikroplastik dapat terbentuk']
+    description: 'Siklus hidup plastik mencakup seluruh tahapan mulai dari ekstraksi bahan baku, produksi, distribusi, penggunaan, hingga pengelolaan akhir berupa daur ulang, pembakaran, penimbunan, atau kebocoran ke lingkungan. Analisis siklus hidup (Life Cycle Assessment/LCA) digunakan untuk menilai dampak lingkungan pada setiap tahapan sehingga dapat diketahui titik yang paling membutuhkan perbaikan. Pendekatan ini menunjukkan bahwa dampak lingkungan plastik tidak hanya terjadi ketika menjadi sampah, tetapi juga sejak proses produksi yang menggunakan energi dan bahan bakar fosil.',
+    example: 'Sebagian besar plastik hanya digunakan dalam waktu singkat, tetapi tetap berada di lingkungan selama ratusan tahun',
+    impacts: ['Jika tidak dikelola, plastik bertahan sangat lama', 'Akumulasi limbah', 'Mikroplastik dapat terbentuk']
   },
   // Baris bawah
   {
@@ -103,7 +103,7 @@ const NODES: SystemNode[] = [
     x: 22,
     y: 70,
     color: '#4ade80',
-    description: 'Ekosistem alami yang terdampak oleh polusi plastik',
+    description: 'Lingkungan merupakan sistem ekologi yang menerima dampak langsung dari pencemaran plastik. Sampah plastik dapat merusak habitat, mengganggu organisme, dan memasuki rantai makanan melalui mikroplastik. Hewan laut sering salah mengira plastik sebagai makanan sehingga menyebabkan gangguan pencernaan, kelaparan, bahkan kematian. Mikroplastik juga ditemukan pada air minum, udara, tanah, hingga berbagai organisme laut sehingga menjadi perhatian global terhadap kesehatan ekosistem',
     example: 'Mikroplastik ditemukan di 90% burung laut dan kehidupan laut',
     impacts: ['Kehilangan keanekaragaman hayati', 'Kerusakan habitat', 'Kontaminasi rantai makanan']
   },
@@ -113,7 +113,7 @@ const NODES: SystemNode[] = [
     x: 43,
     y: 72,
     color: '#38bdf8',
-    description: 'Inovasi dalam produksi, daur ulang, dan alternatif',
+    description: 'Perkembangan teknologi berperan penting dalam mengurangi dampak lingkungan akibat plastik melalui inovasi bahan, proses produksi, dan pengelolaan limbah. Contohnya meliputi plastik berbasis biomassa, plastik biodegradable, teknologi daur ulang mekanik dan kimia, serta penggunaan katalis yang lebih efisien sesuai prinsip green chemistry. Teknologi tidak hanya berfungsi mengatasi limbah, tetapi juga mencegah terbentuknya limbah sejak tahap desain material.',
     example: 'Plastik biodegradable yang lebih mudah terurai',
     impacts: ['Efisiensi daur ulang', 'Material alternatif', 'Potensi inovasi']
   },
@@ -123,8 +123,8 @@ const NODES: SystemNode[] = [
     x: 72,
     y: 68,
     color: '#2D6A4F',
-    description: 'Keseimbangan jangka panjang antara kebutuhan manusia dan kesehatan lingkungan',
-    example: 'Model ekonomi sirkular mengurangi limbah plastik hingga 80%',
+    description: 'Keberlanjutan merupakan upaya memenuhi kebutuhan saat ini tanpa mengurangi kemampuan generasi mendatang memenuhi kebutuhannya. Dalam pengelolaan plastik, keberlanjutan dicapai melalui penerapan prinsip green chemistry, ekonomi sirkular, penggunaan kembali (reuse), pengurangan penggunaan (reduce), daur ulang (recycle), dan pengembangan material yang lebih ramah lingkungan. Pendekatan ini bertujuan mengurangi konsumsi sumber daya alam, emisi, serta pembentukan limbah sejak tahap perancangan produk.',
+    example: 'Penerapan ekonomi sirkular diperkirakan dapat mengurangi limbah plastik hingga sekitar 80% pada tahun 2040 apabila diterapkan secara luas.',
     impacts: ['Sampah berkurang', 'Lingkungan lebih terjaga untuk generasi berikutnya'],
     systemNote: '🎯 Catatan Sistemik: Keberlanjutan adalah tujuan akhir dari perbaikan sistem'
   }
