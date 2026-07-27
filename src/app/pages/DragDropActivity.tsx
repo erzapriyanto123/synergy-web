@@ -142,7 +142,7 @@ export const DragDropActivity: React.FC = () => {
         <div className="flex flex-col items-center justify-center h-full">
           <div className="text-5xl mb-3">🧩</div>
           <h3 className="text-2xl font-bold text-[#2D6A4F]">
-            Sistem Penggunaa Plastik Sekali Pakai
+            Sistem Penggunaan Plastik Sekali Pakai
           </h3>
           <p className="text-gray-500 mt-2">
             {selectedItem
