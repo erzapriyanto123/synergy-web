@@ -214,15 +214,23 @@ export const SystemVisualization: React.FC = () => {
             </p>
           </div>
 
-          <div className="text-center">
-            <Button 
-              size="lg" 
-              className="bg-[#2D6A4F] hover:bg-[#40916C]"
-              onClick={handleContinue}
-            >
-              {t('systemViz.continue')}
-            </Button>
-          </div>
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
+  <Button
+    size="lg"
+    className="bg-[#2D6A4F] hover:bg-[#40916C] text-white"
+    onClick={() => navigate('/problem-trigger')}
+  >
+    Kembali
+  </Button>
+
+  <Button
+    size="lg"
+    className="bg-[#2D6A4F] hover:bg-[#40916C] text-white"
+    onClick={handleContinue}
+  >
+    {t('systemViz.continue')}
+  </Button>
+</div>
         </motion.div>
       </div>
 

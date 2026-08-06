@@ -193,16 +193,16 @@ export const Dashboard: React.FC = () => {
                 completed={(user?.completedActivities ?? []).includes('system-viz')}
                 onClick={() => navigate('/system-visualization')}
               />
-              <LearningModule 
+              <LearningModule
                 title={t('dashboard.module3.title')}
-                description="Pilih dan kenali komponen dalam sistem penggunaan plastik sekali pakai"
+                description={t('dashboard.module3.desc')}
                 completed={(user?.completedActivities ?? []).includes('drag-drop')}
                 onClick={() => navigate('/drag-drop-activity')}
               />
               <LearningModule 
                 title={t('dashboard.module4.title')}
                 description={t('dashboard.module4.desc')}
-                completed={(user?.completedActivities ?? []).includes('connections')}
+                completed={(user?.completedActiviSties ?? []).includes('connections')}
                 onClick={() => navigate('/connection-activity')}
               />
               <LearningModule 
