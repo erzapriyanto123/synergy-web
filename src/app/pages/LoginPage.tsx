@@ -144,19 +144,19 @@ export const LoginPage: React.FC = () => {
                       <li className="flex items-start gap-2">
                         <span className="text-[#2D6A4F] font-bold">•</span>
                         <span className="text-gray-700">
-                          <strong>Visualisasi Sistem:</strong> Mempelajari hubungan antar komponen sistem penggunaan plastik sekali pakai.
+                          <strong>Visualisasi Sistem:</strong> Mempelajari hubungan antar komponen dalam permasalahan plastik khususnya daur hidup plastik sekali pakai.
                         </span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-[#2D6A4F] font-bold">•</span>
                         <span className="text-gray-700">
-                          <strong>Aktivitas Sistem:</strong> Mengidentifikasi dan menghubungkan komponen sistem serta memberi label hubungan (+) atau (−).
+                          <strong>Aktivitas Sistem:</strong> Mengidentifikasi dan menghubungkan komponen permasalahan serta memberi label hubungan (+) atau (−).
                         </span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-[#2D6A4F] font-bold">•</span>
                         <span className="text-gray-700">
-                          <strong>Analisis Dinamis:</strong> Menganalisis perubahan komponen sistem berdasarkan skenario.
+                          <strong>Analisis Dinamis:</strong> Menganalisis perubahan komponen permasalahan berdasarkan skenario.
                         </span>
                       </li>
                       <li className="flex items-start gap-2">
@@ -168,7 +168,7 @@ export const LoginPage: React.FC = () => {
                       <li className="flex items-start gap-2">
                         <span className="text-[#2D6A4F] font-bold">•</span>
                         <span className="text-gray-700">
-                          <strong>Solusi Green Chemistry:</strong> Mempelajari prinsip Green Chemistry untuk memperbaiki sistem penggunaan plastik sekali pakai.
+                          <strong>Solusi Green Chemistry:</strong> Mempelajari prinsip Green Chemistry untuk memperbaiki dan mengatasipermasalahan penggunaan plastik sekali pakai.
                         </span>
                       </li>
                     </ul>
