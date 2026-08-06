@@ -205,13 +205,23 @@ export const ProblemTrigger: React.FC = () => {
               {t('problem.ready')}
             </p>
             
-            <Button 
-              size="lg" 
-              className="bg-white text-[#2D6A4F] hover:bg-gray-100 px-8 py-6 text-lg"
-              onClick={handleStart}
-            >
-              {t('problem.continue')}
-            </Button>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+  <Button
+    size="lg"
+    className="bg-white text-[#2D6A4F] hover:bg-gray-100 px-8 py-6 text-lg"
+    onClick={() => navigate('/dashboard')}
+  >
+    Kembali
+  </Button>
+
+  <Button
+    size="lg"
+    className="bg-white text-[#2D6A4F] hover:bg-gray-100 px-8 py-6 text-lg"
+    onClick={handleStart}
+  >
+    {t('problem.continue')}
+  </Button>
+</div>
           </motion.div>
         </motion.div>
       </div>

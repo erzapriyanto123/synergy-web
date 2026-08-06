@@ -342,13 +342,24 @@ export const Dashboard: React.FC = () => {
                   >
                     {t('guide.skip')}
                   </Button>
-                  <Button 
-                    size="lg" 
-                    className="bg-[#2D6A4F] hover:bg-[#40916C] text-white px-8"
-                    onClick={startJourney}
-                  >
-                    {t('guide.start')} 🚀
-                  </Button>
+                  <div className="flex flex-col sm:flex-row justify-center gap-4">
+  <Button
+    size="lg"
+    variant="outline"
+    className="px-8"
+    onClick={() => navigate('/dashboard')}
+  >
+    ← Kembali 
+  </Button>
+
+  <Button
+    size="lg"
+    className="bg-[#2D6A4F] hover:bg-[#40916C] text-white px-8"
+    onClick={startJourney}
+  >
+    {t('guide.start')} 🚀
+  </Button>
+</div>
                 </div>
               </div>
             </motion.div>
