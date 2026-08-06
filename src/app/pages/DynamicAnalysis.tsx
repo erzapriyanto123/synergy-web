@@ -85,7 +85,7 @@ export const DynamicAnalysis: React.FC = () => {
           <div className="text-center mb-8">
             <h2 className="text-4xl font-bold mb-4">Analisis Sistem Dinamis</h2>
             <p className="text-xl text-gray-600">
-              Sistem berubah seiring waktu. Prediksi bagaimana komponen akan merespons peningkatan produksi.
+              Permasalahan berubah seiring waktu. Prediksi bagaimana komponen dalam permasalahan plastik akan merespons peningkatan produksi.
             </p>
           </div>
 
@@ -99,7 +99,7 @@ export const DynamicAnalysis: React.FC = () => {
               Produksi plastik terus meningkat selama 5 tahun ke depan dengan tingkat pertumbuhan saat ini.
             </p>
             <p className="text-lg opacity-90">
-              Analisis grafik di bawah dan prediksi dampaknya terhadap komponen sistem lainnya.
+              Analisis grafik di bawah dan prediksi dampaknya terhadap bagian komponen permasalahan lainnya.
             </p>
           </div>
 
@@ -137,7 +137,7 @@ export const DynamicAnalysis: React.FC = () => {
           <div className="bg-white rounded-2xl p-8 shadow-xl mb-8">
             <h3 className="text-2xl font-bold mb-6">Buat Prediksi Anda</h3>
             <p className="text-gray-600 mb-6">
-              Untuk setiap komponen, prediksi apakah akan meningkat, menurun, atau tetap stabil:
+              Untuk setiap komponen bagian permasalahan plastik, prediksi apakah akan meningkat, menurun, atau tetap stabil:
             </p>
 
             <div className="space-y-6">
@@ -254,23 +254,33 @@ export const DynamicAnalysis: React.FC = () => {
                     <li>• <strong>Stabilitas iklim menurun</strong> karena emisi yang lebih tinggi dari produksi</li>
                   </ul>
                   <p className="mt-4 font-semibold text-blue-800">
-                    Perhatikan bagaimana satu perubahan (peningkatan produksi) menciptakan efek ganda di seluruh sistem!
+                    Perhatikan bagaimana satu perubahan (peningkatan produksi) menciptakan efek ganda di seluruh permasalahan plastik!
                   </p>
                 </div>
 
-                <div className="text-center">
-                  <div className="text-3xl font-bold mb-2 text-[#2D6A4F]">
-                    Skor: {score} / 25 poin
-                  </div>
-                  <Button 
-                    size="lg" 
-                    className="bg-[#2D6A4F] hover:bg-[#40916C]"
-                    onClick={handleContinue}
-                  >
-                    Mulai Simulasi Sistem →
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </div>
+               <div className="text-center">
+  <div className="text-3xl font-bold mb-6 text-[#2D6A4F]">
+    🎉 Skor: {score} / 25 poin
+  </div>
+
+  <div className="flex flex-col sm:flex-row justify-center gap-4">
+    <Button
+      size="lg"
+      className="bg-[#2D6A4F] hover:bg-[#40916C] text-white px-8"
+      onClick={() => navigate('/connection-activity')}
+    >
+      Kembali
+    </Button>
+
+    <Button
+      size="lg"
+      className="bg-[#2D6A4F] hover:bg-[#40916C] text-white px-8"
+      onClick={handleContinue}
+    >
+      Lanjutkan
+    </Button>
+  </div>
+</div>
               </motion.div>
             )}
           </div>
