@@ -156,7 +156,7 @@ export const ConnectionActivity: React.FC = () => {
       )?.explanation;
       setShowFeedback(`✓ Benar! ${explanation} (+2 poin)`);
     } else {
-      setShowFeedback('✗ Hubungan ini tidak menjadi bagian dari hubungan utama sistem plastik.');
+      setShowFeedback('✗ Hubungan ini tidak menjadi bagian dari hubungan utama dalam bagian permasalahan plastik.');
     }
 
 
@@ -264,7 +264,7 @@ export const ConnectionActivity: React.FC = () => {
             <div className="text-center mb-6 sm:mb-8">
               <h2 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">Petakan Hubungan Sistem</h2>
               <p className="text-base sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Hubungkan komponen dan beri label hubungan mereka. Apakah satu komponen meningkatkan (+) atau mengurangi (−) komponen lain?
+                Hubungkan komponen dalam permasalahan plastik dan beri label hubungan antar komponen tersebut. Apakah satu komponen meningkatkan (+) atau mengurangi (−) komponen lain?
               </p>
               <div className="inline-flex flex-col sm:flex-row gap-2 sm:gap-4 bg-white p-3 sm:p-4 rounded-lg shadow">
                 <div className="flex items-center gap-2">
@@ -439,7 +439,7 @@ export const ConnectionActivity: React.FC = () => {
                 <div className="space-y-4">
                   <div className="bg-green-50 border-2 border-green-300 rounded-lg p-4 mb-4">
                     <p className="text-green-800 font-semibold text-lg">
-                      ✓ Bagus! Anda telah membuat {connections.length} hubungan sistem.
+                      ✓ Bagus! Anda telah membuat {connections.length} hubungan dalam suatu permasalahan plastik.
                     </p>
                     <p className="text-green-700 text-sm mt-2">
                       Anda dapat melanjutkan ke pembelajaran berikutnya atau menambah lebih banyak hubungan.
@@ -461,7 +461,7 @@ export const ConnectionActivity: React.FC = () => {
                       Buat minimal {3 - connections.length} hubungan lagi untuk melanjutkan
                     </p>
                     <p className="text-blue-700 text-sm mt-2">
-                      Target: 14 hubungan sistem plastik
+                      Target: 14 hubungan antar bagian komponen dalam permasalahan plastik
                     </p>
                   </div>
                   <Button
