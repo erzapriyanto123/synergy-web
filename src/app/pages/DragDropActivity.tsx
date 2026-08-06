@@ -94,7 +94,7 @@ export const DragDropActivity: React.FC = () => {
       <nav className="bg-[#2D6A4F] text-white px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between">
           <h1 className="text-xl font-bold">
-            SYNERGY - Identifikasi Komponen Sistem
+            SYNERGY - Identifikasi Komponen Permasalahan Plastik
           </h1>
 
           <div className="flex items-center gap-4">
@@ -113,7 +113,7 @@ export const DragDropActivity: React.FC = () => {
           Identifikasi Komponen Sistem
         </h2>
         <p className="text-gray-600 mt-2">
-          Klik komponen → lalu klik area sistem
+          Klik komponen Permasalahan → lalu klik area drop untuk memasukkan komponen tersebut. <br />
         </p>
         <p className="text-sm text-gray-600 mt-2">
           Minimal 5 jawaban benar untuk lanjut
@@ -142,12 +142,12 @@ export const DragDropActivity: React.FC = () => {
         <div className="flex flex-col items-center justify-center h-full">
           <div className="text-5xl mb-3">🧩</div>
           <h3 className="text-2xl font-bold text-[#2D6A4F]">
-            Sistem Penggunaan Plastik Sekali Pakai
+            Area Drop: Permasalahan Plastik 
           </h3>
           <p className="text-gray-500 mt-2">
             {selectedItem
               ? 'Klik untuk memasukkan item ini'
-              : 'Pilih komponen terlebih dahulu'}
+              : 'Pilih komponen permaslahan terlebih dahulu'}
           </p>
         </div>
       </motion.div>
@@ -217,21 +217,28 @@ export const DragDropActivity: React.FC = () => {
         </motion.div>
       )}
 
-        {/* NEXT BUTTON*/}
-        {correctCount >= 5 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center mt-10"
-        >
-          <Button
-            onClick={handleContinue}
-            className="bg-[#2D6A4F] hover:bg-[#1f4d39] text-white px-6 py-3 rounded-xl text-lg shadow-lg"
-          >
-            🎉 Lanjutkan <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-        </motion.div>
-      )}
+        {/* NEXT & BACK BUTTON */}
+{correctCount >= 5 && (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    className="flex flex-col sm:flex-row justify-center gap-4 mt-10"
+  >
+    <Button
+      onClick={() => navigate('/system-visualization')}
+      className="bg-[#2D6A4F] hover:bg-[#1f4d39] text-white px-6 py-3 rounded-xl text-lg shadow-lg"
+    >
+      🔙 Kembali
+    </Button>
+
+    <Button
+      onClick={handleContinue}
+      className="bg-[#2D6A4F] hover:bg-[#1f4d39] text-white px-6 py-3 rounded-xl text-lg shadow-lg"
+    >
+      🎉 Lanjutkan
+    </Button>
+  </motion.div>
+)}
 
     </div>
 
