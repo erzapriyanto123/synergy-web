@@ -312,7 +312,7 @@ export const GreenChemistryLab: React.FC = () => {
             >
               <div className="bg-gradient-to-r from-[#2D6A4F]/10 via-[#40916C]/10 to-[#2A9D8F]/10 rounded-2xl p-6 border-l-4 border-[#2D6A4F]">
                 <p className="text-center text-base sm:text-lg text-gray-800 font-medium leading-relaxed">
-                  ✨ Prinsip-prinsip ini bekerja bersama untuk mengubah sistem penggunaan plastik sekali pakai, dari produksi hingga akhir masa pakai.
+                  ✨ Prinsip-prinsip ini bekerja bersama untuk mengubah permasalahan plastik khususnya plastik sekali pakai, dari produksi hingga akhir masa pakai.
                 </p>
               </div>
             </motion.div>
@@ -333,10 +333,10 @@ export const GreenChemistryLab: React.FC = () => {
 
               <div className="relative z-10 text-center">
                 <div className="inline-block bg-[#2A9D8F] text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                  🔗 Koneksi Sistem
+                  🔗 Koneksi Permasalahan
                 </div>
                 <p className="text-lg sm:text-xl text-gray-800 font-semibold max-w-3xl mx-auto leading-relaxed">
-                  Solusi ini tidak berdiri sendiri, tetapi bekerja pada berbagai bagian sistem yang saling terhubung.
+                  Solusi ini tidak berdiri sendiri, tetapi bekerja pada berbagai bagian komponen permasalahan yang saling terhubung.
                 </p>
               </div>
             </div>
@@ -353,7 +353,7 @@ export const GreenChemistryLab: React.FC = () => {
             <div className="text-center mb-8">
               <div className="inline-block bg-gradient-to-r from-[#2D6A4F] to-[#40916C] text-transparent bg-clip-text mb-2">
                 <h3 className="text-2xl sm:text-4xl font-bold px-2">
-                  Transformasi Sistem Penggunaan Plastik Sekali Pakai
+                  Transformasi Daur Hidup Plastik Sekali Pakai
                 </h3>
               </div>
               <p className="text-base sm:text-lg text-gray-600">melalui Green Chemistry</p>
@@ -507,7 +507,7 @@ export const GreenChemistryLab: React.FC = () => {
                   <div className="flex items-center justify-center mb-5">
                     <div className="bg-green-600 text-white px-5 py-2 rounded-full font-bold text-base sm:text-lg flex items-center gap-2">
                       <span>🎯</span>
-                      <span>Kimia Hijau Mengubah Sistem</span>
+                      <span>Kimia Hijau Mengubah dan Mengatasi PermasalahanPlastik</span>
                     </div>
                   </div>
                   <ul className="space-y-3 text-sm sm:text-base text-gray-800">
@@ -565,7 +565,7 @@ export const GreenChemistryLab: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                Dampak Terintegrasi dalam Sistem
+                Dampak Terintegrasi
               </motion.h3>
 
               <motion.p
@@ -575,29 +575,42 @@ export const GreenChemistryLab: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
               >
-                Ketika prinsip-prinsip green chemistry diterapkan secara bersama, perubahan tidak hanya terjadi pada satu bagian, tetapi menyebar ke seluruh sistem.
+                Ketika prinsip-prinsip green chemistry diterapkan secara bersama, perubahan tidak hanya terjadi pada satu bagian, tetapi menyebar ke seluruh permasalahan.
               </motion.p>
             </div>
           </motion.div>
 
           <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-          >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-[#2D6A4F] to-[#40916C] hover:from-[#40916C] hover:to-[#2D6A4F] px-10 sm:px-16 py-6 sm:py-7 text-base sm:text-lg font-bold rounded-full shadow-xl shadow-[#2D6A4F]/50 hover:shadow-2xl hover:shadow-[#40916C]/50 transition-all duration-300"
-                onClick={handleContinue}
-              >
-                Lanjutkan ke Refleksi Akhir
-                <ArrowRight className="ml-3 w-5 h-5 sm:w-6 sm:h-6" />
-              </Button>
-            </motion.div>
-          </motion.div>
+  className="flex flex-col sm:flex-row justify-center gap-5"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ delay: 0.5 }}
+>
+
+  {/* Tombol Kembali */}
+  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+    <Button
+      size="lg"
+      className="bg-white border-2 border-[#2D6A4F] text-[#2D6A4F] hover:bg-[#2D6A4F] hover:text-white px-10 py-6 text-lg rounded-full shadow-lg transition-all duration-300"
+      onClick={() => navigate(-1)}
+    >
+      ⬅️ Kembali
+    </Button>
+  </motion.div>
+
+  {/* Tombol Lanjut */}
+  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+    <Button
+      size="lg"
+      className="bg-white border-2 border-[#2D6A4F] text-[#2D6A4F] hover:bg-[#2D6A4F] hover:text-white px-10 py-6 text-lg rounded-full shadow-lg transition-all duration-300"
+      onClick={handleContinue}
+    >
+      🌱 Refleksi Akhir
+    </Button>
+  </motion.div>
+
+</motion.div>
         </motion.div>
       </div>
 

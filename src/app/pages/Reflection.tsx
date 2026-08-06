@@ -18,7 +18,7 @@ const QUESTIONS: Question[] = [
   {
     id: "complex",
     question:
-      "Mengapa masalah plastik sekali pakai dianggap sebagai sistem KOMPLEKS?",
+      "Mengapa masalah plastik sekali pakai dianggap sebagai sistem permasalahan KOMPLEKS?",
     options: [
       "A. Memiliki banyak komponen yang saling terhubung",
       "B. Melibatkan berbagai pemangku kepentingan (produsen, konsumen, pemerintah)",
@@ -27,12 +27,12 @@ const QUESTIONS: Question[] = [
     ],
     correct: ["Semua jawaban benar"],
     explanation:
-      "Sistem kompleks memiliki banyak bagian yang saling terhubung di mana perubahan beriak ke seluruh sistem. Sistem penggunaan plastik sekali pakai melibatkan produksi, konsumsi, limbah, lingkungan, ekonomi, teknologi, kebijakan, dan lainnya - semua saling mempengaruhi.",
+      "Sistem permasalahan kompleks memiliki banyak bagian yang saling terhubung di mana perubahan beriak ke seluruh sistem. Sistem penggunaan plastik sekali pakai melibatkan produksi, konsumsi, limbah, lingkungan, ekonomi, teknologi, kebijakan, dan lainnya - semua saling mempengaruhi.",
   },
   {
     id: "interconnected",
     question:
-      "Bagaimana sistem penggunaan plastik sekali pakai menunjukkan KETERKAITAN?",
+      "Bagaimana permasalahan plastik sekali pakai menunjukkan KETERKAITAN?",
     options: [
       "A. Produksi terhubung dengan konsumsi dan iklim",
       "B. Limbah terhubung dengan lingkungan dan kesehatan manusia",
@@ -47,7 +47,7 @@ const QUESTIONS: Question[] = [
   },
   {
     id: "dynamic",
-    question: "Apa yang membuat sistem penggunaan plastik sekali pakai DINAMIS?",
+    question: "Apa yang membuat permasalahan plastik sebagai suatu DINAMIS?",
     options: [
       "A. Berubah seiring waktu",
       "B. Loop umpan balik menciptakan siklus sebab-akibat yang berkelanjutan",
@@ -56,12 +56,12 @@ const QUESTIONS: Question[] = [
     ],
     correct: ["Semua jawaban benar"],
     explanation:
-      "Sistem dinamis terus berubah. Kita melihat bagaimana produksi plastik meningkat 200x selama beberapa dekade, bagaimana loop umpan balik memperkuat efek, dan bagaimana intervensi kecil (seperti kimia hijau) dapat mengubah seluruh sistem.",
+      "Permasalahan plasttik bersifat dinamis yang artinya terus berubah. Kita melihat bagaimana produksi plastik meningkat 200x selama beberapa dekade, bagaimana loop umpan balik memperkuat efek, dan bagaimana intervensi kecil (seperti kimia hijau) dapat mengubah seluruh permasalahan.",
   },
   {
     id: "impacts",
     question:
-      "Mana yang menunjukkan DAMPAK JANGKA PANJANG dalam sistem penggunaan plastik sekali pakai?",
+      "Mana yang menunjukkan DAMPAK JANGKA PANJANG dalam permasalahan plastik?",
     options: [
       "A. Plastik bertahan 450+ tahun di lingkungan",
       "B. Mikroplastik terakumulasi dalam rantai makanan selama puluhan tahun",
@@ -75,7 +75,7 @@ const QUESTIONS: Question[] = [
   {
     id: "feedback",
     question:
-      "Identifikasi LOOP UMPAN BALIK dalam sistem penggunaan plastik sekali pakai:",
+      "Identifikasi LOOP UMPAN BALIK dalam daur hidup plastik sekali pakai",
     options: [
       "A. Lebih banyak produksi → lebih banyak limbah → kerusakan lingkungan → tekanan publik → perubahan kebijakan → pengurangan produksi",
       "B. Teknologi meningkatkan daur ulang → produksi baru berkurang → investasi teknologi berkurang",
@@ -246,7 +246,7 @@ export const Reflection: React.FC = () => {
               <p className="text-gray-600 mb-8">
                 Jawab pertanyaan konseptual ini untuk
                 menunjukkan pemahaman Anda tentang karakteristik
-                sistem. Setiap jawaban benar bernilai 10 poin!
+                permasalahan kompleks plastik. Setiap jawaban benar bernilai 10 poin!
               </p>
 
               <div className="space-y-8">
@@ -339,7 +339,7 @@ export const Reflection: React.FC = () => {
                     className="bg-[#2D6A4F] hover:bg-[#40916C] px-12"
                     onClick={handleSubmit}
                   >
-                    Kirim Asesmen
+                    Kirim Jawaban
                   </Button>
                 </div>
               )}
@@ -375,16 +375,27 @@ export const Reflection: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="text-center">
-                    <Button
-                      size="lg"
-                      className="bg-[#2D6A4F] hover:bg-[#40916C]"
-                      onClick={handleContinue}
-                    >
-                      Lihat Pencapaian Anda
-                      <ArrowRight className="ml-2 w-5 h-5" />
-                    </Button>
-                  </div>
+                  <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
+
+  {/* Tombol Kembali */}
+  <Button
+    size="lg"
+    className="bg-white border-2 border-[#2D6A4F] text-[#2D6A4F] hover:bg-[#2D6A4F] hover:text-white px-8 py-6 text-lg rounded-full shadow-lg transition-all duration-300"
+    onClick={() => navigate(-1)}
+  >
+    ⬅️ Kembali
+  </Button>
+
+  {/* Tombol Lanjut */}
+  <Button
+    size="lg"
+    className="bg-white border-2 border-[#2D6A4F] text-[#2D6A4F] hover:bg-[#2D6A4F] hover:text-white px-8 py-6 text-lg rounded-full shadow-lg transition-all duration-300"
+    onClick={handleContinue}
+  >
+    🏆 Lihat Pencapaian Anda
+  </Button>
+
+</div>
                 </motion.div>
               )}
             </motion.div>

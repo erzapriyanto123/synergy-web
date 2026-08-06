@@ -103,9 +103,9 @@ export const SystemSimulation: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
         >
           <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold mb-4">Simulasi Sistem: Perjalanan Plastik</h2>
+            <h2 className="text-4xl font-bold mb-4">Simulasi: Perjalanan Plastik</h2>
             <p className="text-xl text-gray-600">
-              Saksikan bagaimana dampak menyebar ke berbagai tingkat sistem
+              Saksikan bagaimana dampak menyebar ke berbagai tingkat sistem, dari produksi hingga kesehatan manusia. Pahami keterkaitan dan efek tersembunyi dari peningkatan produksi plastik.
             </p>
           </div>
 
@@ -165,8 +165,13 @@ export const SystemSimulation: React.FC = () => {
             <div className="bg-gray-50 px-8 py-6 flex items-center justify-between border-t">
               <Button
                 variant="outline"
-                onClick={handlePrevious}
-                disabled={currentStage === 0}
+              onClick={() => {
+  if (currentStage === 0) {
+    navigate(-1);
+  } else {
+    handlePrevious();
+  }
+}}
               >
                 ← Sebelumnya
               </Button>
