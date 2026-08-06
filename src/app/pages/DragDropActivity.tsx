@@ -228,7 +228,7 @@ export const DragDropActivity: React.FC = () => {
       onClick={() => navigate('/system-visualization')}
       className="bg-[#2D6A4F] hover:bg-[#1f4d39] text-white px-6 py-3 rounded-xl text-lg shadow-lg"
     >
-      🔙 Kembali
+      ↩️ Kembali
     </Button>
 
     <Button

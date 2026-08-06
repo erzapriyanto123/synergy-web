@@ -262,7 +262,7 @@ export const ConnectionActivity: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="text-center mb-6 sm:mb-8">
-              <h2 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">Petakan Hubungan Sistem</h2>
+              <h2 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">Petakan Hubungan Komponen</h2>
               <p className="text-base sm:text-xl text-gray-600 mb-4 sm:mb-6">
                 Hubungkan komponen dalam permasalahan plastik dan beri label hubungan antar komponen tersebut. Apakah satu komponen meningkatkan (+) atau mengurangi (−) komponen lain?
               </p>
@@ -445,14 +445,23 @@ export const ConnectionActivity: React.FC = () => {
                       Anda dapat melanjutkan ke pembelajaran berikutnya atau menambah lebih banyak hubungan.
                     </p>
                   </div>
-                  <Button
-                    size="lg"
-                    className="bg-[#2D6A4F] hover:bg-[#40916C] text-lg px-8 py-6"
-                    onClick={handleContinue}
-                  >
-                    Lanjutkan ke Analisis Dinamis
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
+                  <div className="flex flex-col sm:flex-row justify-center gap-4">
+  <Button
+    size="lg"
+    className="bg-[#2D6A4F] hover:bg-[#40916C] text-white text-lg px-8 py-6"
+    onClick={() => navigate('/drag-drop-activity')}
+  >
+    ↩️ Kembali
+  </Button>
+
+  <Button
+    size="lg"
+    className="bg-[#2D6A4F] hover:bg-[#40916C] text-white text-lg px-8 py-6"
+    onClick={handleContinue}
+  >
+    🚀 Lanjutkan
+  </Button>
+</div>
                 </div>
               ) : (
                 <div className="space-y-4">
