@@ -50,7 +50,7 @@ const translations: Record<string, string> = {
   'dashboard.module2.title': '2. Visualisasi Sistem',
   'dashboard.module2.desc': 'Jelajahi komponen permasalahan yang saling terhubung',
   'dashboard.module3.title': '3. Identifikasi Komponen Sistem',
-  'dashboard.module3.desc': 'Aktivitas drag-and-drop interaktif',
+  'dashboard.module3.desc': 'Aktivitas interaktif untuk mengidentifikasi komponen permasalahan plastik',
   'dashboard.module4.title': '4. Koneksi Sistem',
   'dashboard.module4.desc': 'Petakan hubungan antar komponen permasalahan',
   'dashboard.module5.title': '5. Analisis Dinamis',

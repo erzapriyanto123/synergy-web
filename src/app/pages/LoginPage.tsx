@@ -168,7 +168,7 @@ export const LoginPage: React.FC = () => {
                       <li className="flex items-start gap-2">
                         <span className="text-[#2D6A4F] font-bold">•</span>
                         <span className="text-gray-700">
-                          <strong>Solusi Green Chemistry:</strong> Mempelajari prinsip Green Chemistry untuk memperbaiki dan mengatasipermasalahan penggunaan plastik sekali pakai.
+                          <strong>Solusi Green Chemistry:</strong> Mempelajari prinsip Green Chemistry untuk memperbaiki dan mengatasi permasalahan penggunaan plastik sekali pakai.
                         </span>
                       </li>
                     </ul>
